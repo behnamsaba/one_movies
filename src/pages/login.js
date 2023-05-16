@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../store/actionCreators';
+import Link from 'next/link';
 
 const usernameValidation = Yup.string()
     .trim()
@@ -44,6 +45,7 @@ const Login = () => {
     });
 
     return (
+        <>
         <form onSubmit={formik.handleSubmit}>
             <InputField
                 id='username'
@@ -65,6 +67,9 @@ const Login = () => {
                 <div>{formik.errors.backendError}</div>
             )}
         </form>
+        <p>Dont have account? <Link href={'/signup'}>Register</Link></p>
+        </>
+
     );
 };
 

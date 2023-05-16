@@ -1,60 +1,64 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
+const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+const LANGUAGE = 'en-US';
 
-class movieDbApi {
-    static async request(endpoint, method = 'get') {
-        const url = `${BASE_URL}/${endpoint}`;
+class MovieDbApi {
+    static axiosInstance = axios.create({
+        baseURL: BASE_URL,
+        params: {
+            api_key: API_KEY,
+            language: LANGUAGE,
+        },
+    });
+
+    static async request(endpoint, method = 'get', params = {}) {
         try {
-            return (await axios({ url, method })).data;
+            const response = await this.axiosInstance.request({
+                url: endpoint,
+                method,
+                params,
+            });
+            return response.data;
         } catch (err) {
             console.error('API Error:', err.response);
-            let message = err.response.data.err;
+            let message = err.response?.data?.error || err.message;
             throw Array.isArray(message) ? message : [message];
         }
     }
 
-    //Get Movies From External API
     static async getMovies(page = '1') {
-        let res = await this.request(
-            `discover/movie?api_key=126ffc3a7d84e0ca2220b11fbb5e8e3a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`
-        );
-        return res;
-    }
-    static async getMovieDetails(id = '980078') {
-        let res = await this.request(
-            `movie/${id}?api_key=126ffc3a7d84e0ca2220b11fbb5e8e3a&language=en-US`
-        );
-        return res;
-    }
-    static async getLatestMovies() {
-        let res = await this.request(
-            'movie/now_playing?api_key=126ffc3a7d84e0ca2220b11fbb5e8e3a&language=en-US&page=1'
-        );
-        return res;
-    }
-    static async getReviews(id = '980078') {
-        let res = await this.request(
-            `movie/${id}/reviews?api_key=126ffc3a7d84e0ca2220b11fbb5e8e3a&language=en-US&page=1`
-        );
-        return res;
+        return this.request('discover/movie', 'get', { page, sort_by: 'popularity.desc', include_adult: false, include_video: false, with_watch_monetization_types: 'flatrate' });
     }
 
-    //Get Series From External API
-    static async getLatestSeries(page="1") {
-        let res = await this.request(
-            `tv/airing_today?api_key=126ffc3a7d84e0ca2220b11fbb5e8e3a&language=en-US&page=${page}`
-        );
-        return res;
+    static async getMovieDetails(id = '980078') {
+        return this.request(`movie/${id}`);
+    }
+
+    static async getLatestMovies() {
+        return this.request('movie/now_playing', 'get', { page: '1' });
+    }
+
+    static async getReviews(id = '980078') {
+        return this.request(`movie/${id}/reviews`, 'get', { page: '1' });
+    }
+
+    static async getByGenre() {
+        return this.request('genre/movie/list');
+    }
+
+    static async getLatestSeries(page = "1") {
+        return this.request('tv/airing_today', 'get', { page });
     }
 
     static async getShowDetails(id) {
-        let res = await this.request(
-            `tv/${id}?api_key=126ffc3a7d84e0ca2220b11fbb5e8e3a&language=en-US`
-        )
-        return res
+        return this.request(`tv/${id}`);
     }
 
+    static async movieSearch(query) {
+        return this.request('search/multi', 'get', { page: '1', include_adult: true, query });
+    }
 }
 
-export default movieDbApi;
+export default MovieDbApi;

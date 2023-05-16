@@ -9,7 +9,6 @@ const GlobalActions = () => {
         dispatch(getGenres());
     }, [dispatch]);
 
-    console.log(dispatch)
 
 
     return;

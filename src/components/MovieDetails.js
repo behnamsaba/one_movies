@@ -31,13 +31,14 @@ const MovieDetails = ({
                 <li>
                     <p>{overview}</p>
                 </li>
-                <li>{budget}</li>
+                <li>Budget :{budget}</li>
+                <li>Genres:</li>
                 {genres.map((genre) => (
                     <li key={genre.id}>{genre.name}</li>
                 ))}
-                <li>{release_date}</li>
-                <li>{runtime}</li>
-                <li>{revenue}</li>
+                <li>release Date: {release_date}</li>
+                <li>Duration: {runtime}</li>
+                <li>Revenue: {revenue}</li>
                 {production_countries.map((country) => (
                     <li key={id}>{country.name}</li>
                 ))}

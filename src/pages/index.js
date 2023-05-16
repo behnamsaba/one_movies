@@ -1,6 +1,5 @@
 import movieDbApi from '../api/externalApi';
-import MovieList from '../components/MovieList';
-import SeriesList from '../components/SeriesList';
+import MediaList from '../components/MediaList';
 import Content from '../components/Content';
 
 export default function Home({ latestMovies, latestSeries }) {
@@ -9,12 +8,12 @@ export default function Home({ latestMovies, latestSeries }) {
             <Content
                 title='Latest Movies'
                 items={latestMovies}
-                Component={MovieList}
+                Component={MediaList}
             />
             <Content
                 title='Latest TV-Series'
                 items={latestSeries}
-                Component={SeriesList}
+                Component={MediaList}
             />
         </main>
     );

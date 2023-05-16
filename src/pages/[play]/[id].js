@@ -8,9 +8,7 @@ const Id = ({ info }) => {
     const {
         query: { play },
     } = useRouter();
-
-    console.log('info', info);
-
+    console.log(info)
     return (
         <div>
             {play === 'movie' ? (
@@ -28,9 +26,8 @@ Id.propTypes = {
 
 export async function getServerSideProps({ params }) {
     const { id, play } = params;
-    if(!parseInt(id)){
-      return { notFound: true }
-
+    if (!parseInt(id)) {
+        return { notFound: true };
     }
 
     let info;

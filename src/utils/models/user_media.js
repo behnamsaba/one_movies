@@ -1,24 +1,23 @@
 import db from '../db';
-import { sqlForPartialUpdate } from '../helpers/sql';
-
 /** Related functions for watchlist. */
 
-class watchlist {
-  static async create({ userId, mediaId }) {
+class Users_Media {
+  static async create({ username, mediaId }) {
     const duplicateCheck = await db.query(
-          `SELECT mediaId
-           FROM watchlist
-           WHERE midaId = $1`,
-        [mediaId]);
+          `SELECT username
+           FROM users_media
+           WHERE media_id = $1 AND username = $2`,
+        [mediaId,
+      username]);
 
     if (duplicateCheck.rows[0])
       throw new BadRequestError(`Duplicate: ${mediaId}`);
 
     const result = await db.query(
-          `INSERT INTO watchlist
-           (user_id, media_Id)
+          `INSERT INTO users_media
+           (username, media_id)
            VALUES ($1, $2)
-           RETURNING id, user_id AS "UserId", media_id AS "media_id"`,
+           RETURNING username, media_id AS "mediaId"`,
         [
           userId,
           mediaId,
@@ -32,4 +31,4 @@ class watchlist {
 }
 
 
-export default watchlist
+export default Users_Media

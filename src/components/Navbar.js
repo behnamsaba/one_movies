@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Genre from './Genre';
+import SearchForm from './SearchForm';
 
 
 const Navbar = () => {
@@ -27,6 +28,9 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link href='/login'>Login/Register</Link>
+                </li>
+                <li>
+                    <SearchForm />
                 </li>
             </ul>
         </nav>

@@ -1,6 +1,6 @@
 import movieDbApi from '../../api/externalApi';
 import Link from 'next/link';
-import MovieList from '../../components/MovieList';
+import MediaList from '../../components/MediaList';
 import Content from '../../components/Content';
 
 const Movies = ({ initialMovies, page }) => {
@@ -10,7 +10,7 @@ const Movies = ({ initialMovies, page }) => {
         <div>
             <h1>Your heading here</h1>
             <h1>page number {page}</h1>
-            <Content title="Latest TV-Series" items={initialMovies} Component={MovieList} />
+            <Content title="Latest Movies" items={initialMovies} Component={MediaList} />
             
 
             <button>{page}</button>
