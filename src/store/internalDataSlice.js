@@ -1,27 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {getUsername ,registerUser, loginUser } from './actionCreators';
-const initialState = {user: null};
+import {
+    getUsername,
+    registerUser,
+    loginUser,
+    userChange,
+} from './actionCreators';
+const initialState = {
+    token: {},
+};
 
 const userSlice = createSlice({
     name: 'userActions',
     initialState,
-    reducers: {},
+    reducers: {
+        setToken: (state, action) => {
+            const { key, token } = action.payload;
+            state.token[key] = token;
+            localStorage.setItem(key, token); // Save token to localStorage
+        },
+        clearToken: (state, action) => {
+            const key = action.payload;
+            state.token[key] = null;
+            localStorage.removeItem(key); // Remove token from localStorage
+        },
+
+        setUser: (state, action) => {
+            state.user = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder
-            //get username
-            .addCase(getUsername.pending, (state) => {
-                state.status = 'loading';
-            })
-            .addCase(getUsername.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.user = action.payload;
-            })
-            .addCase(getUsername.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.error.message;
-            })
-            
-            //adduser
+            //adda new user
             .addCase(registerUser.pending, (state) => {
                 state.status = 'loading';
             })
@@ -32,7 +41,7 @@ const userSlice = createSlice({
             .addCase(registerUser.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
-            }) //login
+            }) //user login
             .addCase(loginUser.pending, (state) => {
                 state.status = 'loading';
             })
@@ -43,8 +52,20 @@ const userSlice = createSlice({
             .addCase(loginUser.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
-            });
+            })
+            .addCase(userChange.pending, (state) => {
+              state.status = 'loading';
+          })
+          .addCase(userChange.fulfilled, (state, action) => {
+              state.status = 'succeeded';
+              state.user = action.payload;
+          })
+          .addCase(userChange.rejected, (state, action) => {
+              state.status = 'failed';
+              state.error = action.error.message;
+          })
     },
 });
 
+export const { setToken, clearToken, setUser } = userSlice.actions;
 export default userSlice.reducer;

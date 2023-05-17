@@ -1,6 +1,6 @@
 import User from '@/utils/models/user';
 import { validate } from 'jsonschema';
-import userRegisterSchema from '../../../utils/schemas/userRegister.json'
+import userRegisterSchema from '../../../utils/backend-validation/schemas/userRegister.json'
 import { createToken } from '../../../utils/helpers/tokens';
 import { BadRequestError } from '../../../utils/NextErrors';
 export default async function handler(req, res) {

@@ -20,7 +20,7 @@ class oneMoviesApi {
         //there are multiple ways to pass an authorization token, this is how you pass it in the header.
         //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
         const url = `${BASE_URL}/${endpoint}`;
-        const headers = { Authorization: `Bearer ${oneMoviesApi.token}` };
+        const headers = { Authorization: `${oneMoviesApi.token}` };
         const params = method === 'get' ? data : {};
 
         try {
@@ -33,15 +33,6 @@ class oneMoviesApi {
     }
 
     // Individual API routes
-
-
-    // get username
-
-    static async getCurrentUser(username) {
-        let res = await this.request(`users/${username}`);
-        return res.user;
-    }
-
 
     //sign up
 
@@ -57,13 +48,18 @@ class oneMoviesApi {
         return res.token;
     }
 
-    //getAll users
-    
+    // get current user
 
+    static async getCurrentUser(username) {
+        let res = await this.request(`api/profile/${username}`);
+        return res
+    }
 
-
-
+    //modify user data
+    static async saveProfile(username, data) {
+        let res = await this.request(`api/profile/${username}`, data, 'patch');
+        return res
+    }
 }
-
 
 export default oneMoviesApi;

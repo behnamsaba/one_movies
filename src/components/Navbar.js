@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import Genre from './Genre';
 import SearchForm from './SearchForm';
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-
+    const proileData = useSelector((data) => data.internalDataSlice.user);
     return (
         <nav>
             <ul>

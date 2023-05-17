@@ -16,9 +16,9 @@ export default async function handler(req, res) {
                 break;
             default:
                 res.setHeader('Allow', ['GET', 'PATCH', 'DELETE']);
-                res.status(405).json({ error: `Method ${method} Not Allowed`})
+                res.status(405).json({ error: `Method ${method} Not Allowed` });
         }
-    } catch (error) {
-        res.status(error.status || 500).json({ error: error.message });
+    } catch (err) {
+        res.status(err.status || 500).json({ err: err.message });
     }
 }

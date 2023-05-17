@@ -1,43 +1,45 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../store/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     nameValidation,
     emailValidation,
-    usernameValidation,
-    passwordValidation,
 } from '@/utils/front-validation/Validation';
+import { userChange } from '../../store/actionCreators';
 
-const SignUp = () => {
-    const router = useRouter();
+const Profile = () => {
+    const proileData = useSelector((data) => data.internalDataSlice.user);
     const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
-            username: '',
             email: '',
-            password: '',
         },
         onSubmit: async (values) => {
             try {
-                await dispatch(registerUser(values)).unwrap();
-                router.push('/');
-            } catch (error) {
-                formik.setErrors({ backendError: error });
+                await dispatch(
+                    userChange({ username: proileData.username, data: values })
+                ).unwrap();
+                alert('Successfully Changed');
+            } catch (e) {
+                console.log(e);
+                formik.setErrors({ backendError: e });
             }
         },
         validationSchema: Yup.object({
             firstName: nameValidation,
             lastName: nameValidation,
-            username: usernameValidation,
             email: emailValidation,
-            password: passwordValidation,
         }),
     });
+
+    if (proileData) {
+        formik.initialValues.firstName = proileData.firstName;
+        formik.initialValues.lastName = proileData.lastName;
+        formik.initialValues.email = proileData.email;
+    }
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -54,26 +56,13 @@ const SignUp = () => {
                 {...formik.getFieldProps('lastName')}
             />
             <InputField
-                id='username'
-                label='Username:'
-                formik={formik}
-                {...formik.getFieldProps('username')}
-            />
-            <InputField
                 id='email'
                 label='Email:'
                 type='email'
                 formik={formik}
                 {...formik.getFieldProps('email')}
             />
-            <InputField
-                id='password'
-                label='Password:'
-                type='password'
-                formik={formik}
-                {...formik.getFieldProps('password')}
-            />
-            <button type='submit'>Join!</button>
+            <button type='submit'>Save Changes</button>
 
             {formik.errors.backendError && (
                 <div>{formik.errors.backendError}</div>
@@ -96,4 +85,5 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
     </>
 );
 
-export default SignUp;
+
+export default Profile;
