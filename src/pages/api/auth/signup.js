@@ -11,7 +11,7 @@ export default async function handler(req, res) {
             throw new BadRequestError(errs);
         }
         const newUser = await User.register({...req.body});
-        const token = createToken(newUser);
+        const token = await createToken(newUser);
         return res.json({ token });
     } catch (err) {
         res.status(err.status || 500).json({ err: err.message });

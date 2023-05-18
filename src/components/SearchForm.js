@@ -17,7 +17,7 @@ const SearchForm = () => {
             <input
                 id='query'
                 type='text'
-                placeholder='search'
+                placeholder="Enter your keywords..."
                 {...formik.getFieldProps('query')}
             />
             <button type='submit'>Search</button>

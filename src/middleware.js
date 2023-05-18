@@ -22,31 +22,45 @@ const verifyToken = async (token, secret) => {
 export async function middleware(request) {
     const { headers } = request;
     const token = headers.get(AUTH_HEADER_NAME);
-
+    const secret = new TextEncoder().encode(SECRET_KEY);
     if (!token) {
         return NextResponse.json(
             { error: 'Authorization header must be provided' },
             { status: UNAUTHORIZED_STATUS }
         );
     }
-    const userFromPath = extractPathUser(request);
-    const secret = new TextEncoder().encode(SECRET_KEY);
 
-    try {
-        const result = await verifyToken(token, secret);
-        if (result.payload.username !== userFromPath) {
+    if (request.nextUrl.pathname.startsWith('/api/profile/watchlist')){
+        try {
+            const result = await verifyToken(token, secret);
+        } catch (err) {
             return NextResponse.json(
-                { error: 'Not authorized to access this route' },
+                { error: err.message },
                 { status: UNAUTHORIZED_STATUS }
             );
         }
-    } catch (err) {
-        return NextResponse.json(
-            { error: err.message },
-            { status: UNAUTHORIZED_STATUS }
-        );
+
+
+    }else{
+        const userFromPath = extractPathUser(request);
+        try {
+            const result = await verifyToken(token, secret);
+            if (result.payload.username !== userFromPath) {
+                return NextResponse.json(
+                    { error: 'Not authorized to access this route' },
+                    { status: UNAUTHORIZED_STATUS }
+                );
+            }
+        } catch (err) {
+            return NextResponse.json(
+                { error: err.message },
+                { status: UNAUTHORIZED_STATUS }
+            );
+        }
+        return NextResponse.next();
+
     }
-    return NextResponse.next();
+
 }
 
 // Route configuration

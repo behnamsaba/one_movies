@@ -17,6 +17,6 @@ CREATE TABLE Media (
 
 CREATE TABLE users_media (
   username VARCHAR(25) NOT NULL REFERENCES users,
-  media_id INTEGER NOT NULL REFERENCES Media,
-  PRIMARY KEY (username, media_id)
+  api_Id INTEGER NOT NULL REFERENCES Media,
+  PRIMARY KEY (username, api_Id)
 );

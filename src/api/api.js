@@ -60,6 +60,19 @@ class oneMoviesApi {
         let res = await this.request(`api/profile/${username}`, data, 'patch');
         return res
     }
+
+    //create media inside db
+    static async createMedia(data) {
+        let res = await this.request(`api/media`, data, 'post');
+        return res
+    }
+
+    //add to watchlist
+
+    static async addWatchList(){
+        let res = await this.request()
+    }
+
 }
 
 export default oneMoviesApi;

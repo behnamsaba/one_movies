@@ -38,6 +38,7 @@ export const registerUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const token = await oneMoviesApi.signUp(data);
+            console.log("inside red", token)
             oneMoviesApi.token = token;
             return token;
         } catch (error) {
@@ -59,3 +60,17 @@ export const userChange = createAsyncThunk(
         }
     }
 );
+
+export const addWatchList = createAsyncThunk(
+    'user/addWatchList',
+    async ({ username, data }, { rejectWithValue }) => {
+        try {
+            let createMedia = await oneMoviesApi.createMedia(data)
+            return changedUser;
+        } catch (error) {
+            console.log('err', error);
+            return rejectWithValue(error[0]);
+        }
+    }
+);
+

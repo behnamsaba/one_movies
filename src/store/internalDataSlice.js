@@ -13,15 +13,9 @@ const userSlice = createSlice({
     name: 'userActions',
     initialState,
     reducers: {
-        setToken: (state, action) => {
-            const { key, token } = action.payload;
-            state.token[key] = token;
-            localStorage.setItem(key, token); // Save token to localStorage
-        },
-        clearToken: (state, action) => {
-            const key = action.payload;
-            state.token[key] = null;
-            localStorage.removeItem(key); // Remove token from localStorage
+        clearToken: (state) => {
+            state.token['one_movies'] = null;
+            localStorage.removeItem('one_movies'); // Remove token from localStorage
         },
 
         setUser: (state, action) => {
@@ -54,16 +48,16 @@ const userSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(userChange.pending, (state) => {
-              state.status = 'loading';
-          })
-          .addCase(userChange.fulfilled, (state, action) => {
-              state.status = 'succeeded';
-              state.user = action.payload;
-          })
-          .addCase(userChange.rejected, (state, action) => {
-              state.status = 'failed';
-              state.error = action.error.message;
-          })
+                state.status = 'loading';
+            })
+            .addCase(userChange.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.user = action.payload;
+            })
+            .addCase(userChange.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            });
     },
 });
 
