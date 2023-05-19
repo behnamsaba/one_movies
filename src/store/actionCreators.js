@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import oneMoviesApi from '../api/api';
 import MovieDbApi from '@/api/externalApi';
 
@@ -43,12 +42,13 @@ export const userChange = createAsyncThunk(
     }
 );
 
-export const addWatchList = createAsyncThunk(
+export const addWatch = createAsyncThunk(
     'user/addWatchList',
-    async ({ username, data }, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
         try {
-            let createMedia = await oneMoviesApi.addWatchList(username, data);
-            return createMedia;
+            let response = await oneMoviesApi.addWatchList(data);
+            console.log("inside",response)
+            return response;
         } catch (error) {
             return rejectWithValue(error[0]);
         }

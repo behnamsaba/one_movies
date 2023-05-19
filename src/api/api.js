@@ -58,7 +58,7 @@ class oneMoviesApi {
     }
 
     //add to watchlist
-    static async addWatchList(username,data){
+    static async addWatchList(data){
         let res = await this.request('api/profile/watchlist', data, 'post')
         return res
     }

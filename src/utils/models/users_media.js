@@ -59,11 +59,23 @@ class Users_Media {
                 ]
             );
         }
-
-        const result = await db.query(
+        //First Add
+        await db.query(
             `INSERT INTO users_media (username, api_id)
-          VALUES ($1, $2)
-          RETURNING username, api_id AS "apiId"`,
+            VALUES ($1, $2)`,
+            [data.username, data.apiId]
+        );
+
+        //SELECT operation
+        const result = await db.query(
+            `SELECT media.api_id AS "apiId",
+              media.title,
+              media.poster_path AS "posterPath",
+              media.rating,
+              media.release_date AS "releaseDate"
+            FROM media
+            JOIN users_media ON media.api_id = users_media.api_id
+            WHERE users_media.username = $1 AND users_media.api_id = $2`,
             [data.username, data.apiId]
         );
 

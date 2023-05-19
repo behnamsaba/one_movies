@@ -3,6 +3,7 @@ import {
     registerUser,
     loginUser,
     userChange,
+    addWatch
 } from './actionCreators';
 const initialState = {
     token: null,
@@ -54,6 +55,17 @@ const userSlice = createSlice({
                 state.user = action.payload;
             })
             .addCase(userChange.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
+            .addCase(addWatch.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(addWatch.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.user.watchlist.push(action.payload);
+            })
+            .addCase(addWatch.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
             });
