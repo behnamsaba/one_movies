@@ -3,7 +3,7 @@ import axios from 'axios';
 import oneMoviesApi from '../api/api';
 import MovieDbApi from '@/api/externalApi';
 
-// Internal database functions 
+// Internal database functions
 export const loginUser = createAsyncThunk(
     'login/userLogin',
     async (data, { rejectWithValue }) => {
@@ -47,17 +47,17 @@ export const addWatchList = createAsyncThunk(
     'user/addWatchList',
     async ({ username, data }, { rejectWithValue }) => {
         try {
-            let createMedia = await oneMoviesApi.createMedia(data);
-            return changedUser;
+            let createMedia = await oneMoviesApi.addWatchList(username, data);
+            return createMedia;
         } catch (error) {
             return rejectWithValue(error[0]);
         }
     }
 );
 
-//external functions for 
+//external functions for
 
 export const getGenres = createAsyncThunk('genres/fetchGenres', async () => {
-  let response = await MovieDbApi.getGenres()
+    let response = await MovieDbApi.getGenres();
     return response;
 });

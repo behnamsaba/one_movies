@@ -10,8 +10,6 @@ class Users_Media {
             [username, mediaId]
         );
 
-        //
-
         if (duplicateCheck.rows[0])
             throw new BadRequestError(`Duplicate: ${mediaId}`);
 
@@ -27,7 +25,7 @@ class Users_Media {
         return watchlist;
     }
 
-  
+    //create media(if not exist) and add to watchlist simultaneously
     static async createMediaWatch(data) {
         const duplicateCheck = await db.query(
             `SELECT username

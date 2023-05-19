@@ -124,14 +124,22 @@ class User {
 
         if (!user) throw new NotFoundError(`No user: ${username}`);
 
-        // const userApplicationsRes = await db.query(
-        //     `SELECT a.job_id
-        //    FROM applications AS a
-        //    WHERE a.username = $1`,
-        //     [username]
-        // );
+        const userWatchList = await db.query(
+            `SELECT media.api_id AS "apiId",
+            media.title, media.poster_path AS "posterPath", media.rating,media.release_date AS "releaseDate" FROM media
+            JOIN users_media
+            ON media.api_id = users_media.api_id
+             WHERE username = $1`,
+            [username]
+        );
 
-        // user.applications = userApplicationsRes.rows.map((a) => a.job_id);
+        user.watchlist = userWatchList.rows.map((row) => ({
+            apiId: row.apiId,
+            title: row.title,
+            posterPath: row.posterPath,
+            rating: row.rating,
+            releaseDate: row.releaseDate,
+        }));
         return user;
     }
 
@@ -160,7 +168,7 @@ class User {
 
         const { setCols, values } = sqlForPartialUpdate(data, {
             firstName: 'first_name',
-            lastName: 'last_name'
+            lastName: 'last_name',
         });
         const usernameVarIdx = '$' + (values.length + 1);
 
@@ -184,16 +192,16 @@ class User {
 
     static async remove(username) {
         let result = await db.query(
-              `DELETE
+            `DELETE
                FROM users
                WHERE username = $1
                RETURNING username`,
-            [username],
+            [username]
         );
         const user = result.rows[0];
-    
+
         if (!user) throw new NotFoundError(`No user: ${username}`);
-      }
+    }
 
     /** Add to watchlist: update db, returns undefined.
      *
