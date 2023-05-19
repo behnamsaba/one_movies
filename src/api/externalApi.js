@@ -59,6 +59,11 @@ class MovieDbApi {
     static async movieSearch(query) {
         return this.request('search/multi', 'get', { page: '1', include_adult: true, query });
     }
+
+    static async getGenres(){
+        return this.request(`genre/movie/list`);
+        
+    }
 }
 
 export default MovieDbApi;

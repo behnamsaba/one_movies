@@ -12,7 +12,7 @@ export async function createToken(user) {
 
     const jwt = await new SignJWT(payload)
         .setProtectedHeader({ alg })
-        .setExpirationTime('6h')
+        .setExpirationTime('30d') //30 days token valid
         .sign(secret);
 
     return jwt;

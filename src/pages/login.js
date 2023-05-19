@@ -22,6 +22,7 @@ const Login = () => {
                 await dispatch(loginUser(values)).unwrap();
                 router.push('/');
             } catch (error) {
+                console.log("client",error)
                 formik.setErrors({ backendError: error });
             }
         },

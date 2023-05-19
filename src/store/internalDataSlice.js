@@ -6,7 +6,7 @@ import {
     userChange,
 } from './actionCreators';
 const initialState = {
-    token: {},
+    token: null,
 };
 
 const userSlice = createSlice({
@@ -14,7 +14,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         clearToken: (state) => {
-            state.token['one_movies'] = null;
+            state.token = null;
             localStorage.removeItem('one_movies'); // Remove token from localStorage
         },
 

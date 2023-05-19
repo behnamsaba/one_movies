@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-    getGenres,
-} from './actionCreators';
+import { getGenres } from './actionCreators';
 const initialState = {};
 
 const apiSlice = createSlice({
@@ -20,8 +18,7 @@ const apiSlice = createSlice({
             .addCase(getGenres.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
-            })
-            
+            });
     },
 });
 

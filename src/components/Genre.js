@@ -24,7 +24,7 @@ const Genre = () => {
             onMouseLeave={handleMouseOut}
             className='list-container'>
             <button onMouseOver={handleMouseOver}>
-                Hover me to see the list
+                Genre
             </button>
             {showList && (
                 <ul className='list'>

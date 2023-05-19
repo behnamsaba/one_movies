@@ -15,6 +15,6 @@ export default async function handler(req, res) {
         const token = await createToken(user);
         return res.json({ token });
     } catch (err) {
-        res.status(err.status || 500).send('Server error: ' + err.message);
+        res.status(err.status || 500).json({ err: err.message });
     }
 }

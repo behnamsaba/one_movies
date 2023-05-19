@@ -8,7 +8,7 @@ const LogOut = () => {
 
     const handleLogout = () => {
         dispatch(clearToken());
-        router.push('/');
+        router.push('/login');
     };
     return (
         <div>
