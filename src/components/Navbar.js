@@ -21,7 +21,7 @@ const Navbar = () => {
                 <li>
                     <Genre />
                 </li>
-                <NavbarLink href='/top-rated'>Top IMDb</NavbarLink>
+                <NavbarLink href='/top-imdb/1'>Top IMDb</NavbarLink>
                 <NavbarLink href='/tv-series/1'>TV-Series</NavbarLink>
                 <NavbarLink href='/movies/1'>Movies</NavbarLink>
                 <li>

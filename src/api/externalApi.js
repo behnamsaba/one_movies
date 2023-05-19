@@ -64,6 +64,11 @@ class MovieDbApi {
         return this.request(`genre/movie/list`);
         
     }
+
+    static async imdbTop() {
+        return this.request('movie/top_rated', 'get', {page: '1'})
+    }
+
 }
 
 export default MovieDbApi;

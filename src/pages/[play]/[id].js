@@ -1,14 +1,18 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import movieDbApi from '../../api/externalApi';
-import ShowDetails from '../../components/ShowDetails';
-import MovieDetails from '../../components/MovieDetails';
+import movieDbApi from '@/api/externalApi';
+import ShowDetails from '@/components/ShowDetails';
+import MovieDetails from '@/components/MovieDetails';
+import UserAccess from '@/components/UserAccess';
+import { useSelector } from 'react-redux';
 
 const Id = ({ info }) => {
+    const profileData = useSelector((data) => data.internalDataSlice);
+    console.log('here we are', profileData);
+    console.log('info', info);
     const {
         query: { play },
     } = useRouter();
-    console.log(info)
     return (
         <div>
             {play === 'movie' ? (
@@ -16,6 +20,7 @@ const Id = ({ info }) => {
             ) : (
                 <ShowDetails {...info} />
             )}
+            {profileData.user && <UserAccess />}
         </div>
     );
 };
