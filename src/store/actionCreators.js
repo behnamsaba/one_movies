@@ -57,14 +57,6 @@ export const addWatchList = createAsyncThunk(
 
 //external functions for 
 
-// export const fetchTopRated = createAsyncThunk('posts/fetchPosts', async () => {
-//     const response = await axios.get(
-//         `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}fbb5e8e3a&language=en-US&page=1`
-//     );
-//     console.log(response);
-//     return response.data;
-// });
-
 export const getGenres = createAsyncThunk('genres/fetchGenres', async () => {
   let response = await MovieDbApi.getGenres()
     return response;
