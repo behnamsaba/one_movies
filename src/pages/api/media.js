@@ -2,7 +2,6 @@ import Media from '@/utils/models/media';
 import { validate } from 'jsonschema';
 import mediaCreate from '@/utils/backend-validation/schemas/mediaCreate.json';
 import { BadRequestError } from '@/utils/NextErrors';
-import { createToken } from '@/utils/helpers/tokens';
 export default async function handler(req, res) {
     try {
         const validator = validate(req.body, mediaCreate);

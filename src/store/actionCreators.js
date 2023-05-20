@@ -47,7 +47,6 @@ export const addWatch = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             let response = await oneMoviesApi.addWatchList(data);
-            console.log("inside",response)
             return response;
         } catch (error) {
             return rejectWithValue(error[0]);

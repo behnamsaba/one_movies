@@ -3,7 +3,7 @@ import {
     registerUser,
     loginUser,
     userChange,
-    addWatch
+    addWatch,
 } from './actionCreators';
 const initialState = {
     token: null,
@@ -13,6 +13,9 @@ const userSlice = createSlice({
     name: 'userActions',
     initialState,
     reducers: {
+        setToken:(state,action) => {
+          state.token = action.payload
+        },
         clearToken: (state) => {
             state.token = null;
             localStorage.removeItem('one_movies'); // Remove token from localStorage
@@ -63,7 +66,10 @@ const userSlice = createSlice({
             })
             .addCase(addWatch.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.user.watchlist.push(action.payload);
+                state.user = {
+                    ...state.user,
+                    watchlist: [...state.user.watchlist, action.payload],
+                };
             })
             .addCase(addWatch.rejected, (state, action) => {
                 state.status = 'failed';
