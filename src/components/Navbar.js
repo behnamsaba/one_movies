@@ -32,6 +32,9 @@ const Navbar = () => {
                         <NavbarLink href='/user/profile'>
                             {profileData.user.username}
                         </NavbarLink>
+                        <NavbarLink href='/user/watchlist'>
+                            watchlist
+                        </NavbarLink>
                         <li className={styles.nav}>
                             <LogOut />
                         </li>

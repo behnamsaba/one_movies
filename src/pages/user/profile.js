@@ -5,7 +5,8 @@ import {
     nameValidation,
     emailValidation,
 } from '@/utils/front-validation/Validation';
-import { userChange } from '../../store/actionCreators';
+import { userChange } from '@/store/actionCreators';
+import Auth from '@/components/Auth';
 
 const Profile = () => {
     const proileData = useSelector((data) => data.internalDataSlice.user);
@@ -86,4 +87,4 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
 );
 
 
-export default Profile;
+export default Auth(Profile)

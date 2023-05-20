@@ -16,7 +16,7 @@ const Top = ({ initialMovies, page }) => {
 
             <button>{page}</button>
             <button>
-                <Link href={`//${parseInt(page) + 1}`}>Next Page</Link>
+                <Link href={`/top-imdb/${parseInt(page) + 1}`}>Next Page</Link>
             </button>
         </div>
     );

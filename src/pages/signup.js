@@ -9,6 +9,7 @@ import {
     usernameValidation,
     passwordValidation,
 } from '@/utils/front-validation/Validation';
+import NotAuth from '@/components/NotAuth';
 
 const SignUp = () => {
     const router = useRouter();
@@ -96,4 +97,4 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
     </>
 );
 
-export default SignUp;
+export default NotAuth(SignUp);

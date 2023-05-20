@@ -8,6 +8,7 @@ import {
     passwordValidation,
 } from '@/utils/front-validation/Validation';
 import * as Yup from 'yup';
+import NotAuth from '@/components/NotAuth';
 const Login = () => {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const Login = () => {
                     formik={formik}
                     {...formik.getFieldProps('password')}
                 />
-                <button type='submit'>Join!</button>
+                <button type='submit'>Login</button>
 
                 {formik.errors.backendError && (
                     <div>{formik.errors.backendError}</div>
@@ -76,4 +77,4 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
     </>
 );
 
-export default Login;
+export default NotAuth(Login);

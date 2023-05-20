@@ -1,3 +1,4 @@
+//HIGHER ORDER COMPONENT
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import oneMoviesApi from '../api/api';
