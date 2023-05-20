@@ -9,7 +9,7 @@ To run this project, the following packages are required:
 
 - Node.js (version compatible with the listed dependencies)
 - npm (generally comes with Node.js)
-- To run this project in your local environment, Obtain your personal API key from [The Movie DB](https://www.themoviedb.org/) (put in .env.local file in route)
+- To run this project in your local environment, Obtain your personal API key from [The Movie DB](https://www.themoviedb.org/) (put in .env.local file in root)
 
 
 ## Dependencies:
