@@ -13,7 +13,6 @@ const NavbarLink = ({ href, children }) => (
 
 const Navbar = () => {
     const profileData = useSelector((data) => data.internalDataSlice);
-    // console.log(profileData.user);
     return (
         <nav className={styles.nav}>
             <ul className={styles.navList}>
@@ -31,9 +30,6 @@ const Navbar = () => {
                     <>
                         <NavbarLink href='/user/profile'>
                             {profileData.user.username}
-                        </NavbarLink>
-                        <NavbarLink href='/user/watchlist'>
-                            watchlist
                         </NavbarLink>
                         <li className={styles.nav}>
                             <LogOut />

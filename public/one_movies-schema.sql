@@ -9,6 +9,7 @@ CREATE TABLE users (
 
 CREATE TABLE Media (
   api_Id INTEGER PRIMARY KEY,
+  category TEXT NOT NULL,
   title TEXT NOT NULL,
   poster_path TEXT NOT NULL,
   rating TEXT NOT NULL,

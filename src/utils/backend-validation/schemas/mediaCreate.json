@@ -8,6 +8,11 @@
       "minLength": 1,
       "maxLength": 30
     },
+    "category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 7
+    },
     "title": {
       "type": "string",
       "minLength": 1,
@@ -16,7 +21,7 @@
     "posterPath": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 30
+      "maxLength": 40
     },
     "rating": {
       "type": "string",

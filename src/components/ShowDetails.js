@@ -2,21 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const ListItem = ({ children }) => <li>{children}</li>;
-
-const ImageItem = ({ src, alt, width = 200, height = 200 }) => (
-    <ListItem>
-        <Image
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-        />
-    </ListItem>
-);
-
 const ShowDetails = ({
-    id,
     name,
     first_air_date,
     networks,
@@ -38,39 +24,41 @@ const ShowDetails = ({
             <button onClick={() => router.back()}>Back</button>
             <h1>{name}</h1>
             <ul>
-                <ImageItem
+                <Image
                     src={`https://image.tmdb.org/t/p/original${poster_path}`}
                     alt={name}
+                    width={200}
+                    height={200}
                 />
-                <ListItem>
+                <li>
                     <p>{overview}</p>
-                </ListItem>
-                <ListItem>{status}</ListItem>
-                <ListItem>Genres:</ListItem>
+                </li>
+                <li>{status}</li>
+                <li>Genres:</li>
                 {genres.map((genre) => (
-                    <ListItem key={genre.id}>{genre.name}</ListItem>
+                    <li key={genre.id}>{genre.name}</li>
                 ))}
-                <ListItem>{first_air_date}</ListItem>
-                <ListItem>{origin_country}</ListItem>
-                <ListItem>Networks:</ListItem>
-                {networks.map((network) => (
-                    <ListItem key={network.id}>
+                <li>{first_air_date}</li>
+                <li>{origin_country}</li>
+                <li>Networks:</li>
+                {networks.map((network, id) => (
+                    <li key={id}>
                         <Link href={homepage}>
-                            <ImageItem
+                            <Image
                                 src={`https://image.tmdb.org/t/p/original${network.logo_path}`}
                                 alt={network.name}
                                 width={50}
                                 height={50}
                             />
                         </Link>
-                    </ListItem>
+                    </li>
                 ))}
-                <ListItem>Total Episodes: {number_of_episodes}</ListItem>
-                <ListItem>Number of Seasons: {number_of_seasons}</ListItem>
-                <ListItem>Original language: {original_language}</ListItem>
-                <ListItem>Vote: {vote_average}</ListItem>
-                {production_countries.map((country) => (
-                    <ListItem key={id}>{country.name}</ListItem>
+                <li>Total Episodes: {number_of_episodes}</li>
+                <li>Number of Seasons: {number_of_seasons}</li>
+                <li>Original language: {original_language}</li>
+                <li>Vote: {vote_average}</li>
+                {production_countries.map((country, id) => (
+                    <li key={id}>{country.name}</li>
                 ))}
             </ul>
         </div>

@@ -36,6 +36,28 @@ export class ForbiddenError extends NextError {
     }
 }
 
+/** Error inside Middleware  */
+export class AuthError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'AuthError';
+    }
+}
+
+export class TokenError extends AuthError {
+    constructor(message) {
+        super(message);
+        this.name = 'TokenError';
+    }
+}
+
+export class UserError extends AuthError {
+    constructor(message) {
+        super(message);
+        this.name = 'UserError';
+    }
+}
+
 export class UnauthorizedError extends NextError {
     constructor(message = 'Bad Request') {
         super(message, 401);

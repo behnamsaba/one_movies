@@ -1,8 +1,8 @@
 import User from '@/utils/models/user';
 import { validate } from 'jsonschema';
-import userAuth from '../../../utils/backend-validation/schemas/userAuth.json';
-import { BadRequestError } from '../../../utils/NextErrors';
-import { createToken } from '../../../utils/helpers/tokens';
+import userAuth from '@/utils/backend-validation/schemas/userAuth.json';
+import { BadRequestError } from '@/utils/NextErrors';
+import { createToken } from '@/utils/helpers/tokens';
 export default async function handler(req, res) {
     try {
         const validator = validate(req.body, userAuth);

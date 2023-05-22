@@ -126,7 +126,7 @@ class User {
 
         const userWatchList = await db.query(
             `SELECT media.api_id AS "apiId",
-            media.title, media.poster_path AS "posterPath", media.rating,media.release_date AS "releaseDate" FROM media
+            media.title,media.category,media.poster_path AS "posterPath", media.rating,media.release_date AS "releaseDate" FROM media
             JOIN users_media
             ON media.api_id = users_media.api_id
              WHERE username = $1`,
@@ -134,11 +134,12 @@ class User {
         );
 
         user.watchlist = userWatchList.rows.map((row) => ({
-            apiId: row.apiId,
+            id: row.apiId,
+            category: row.category,
             title: row.title,
-            posterPath: row.posterPath,
+            poster_path: row.posterPath,
             rating: row.rating,
-            releaseDate: row.releaseDate,
+            release_date: row.releaseDate,
         }));
         return user;
     }

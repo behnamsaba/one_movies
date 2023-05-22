@@ -33,13 +33,13 @@ const MovieDetails = ({
                 </li>
                 <li>Budget :{budget}</li>
                 <li>Genres:</li>
-                {genres.map((genre) => (
-                    <li key={genre.id}>{genre.name}</li>
+                {genres.map((genre,id) => (
+                    <li key={id}>{genre.name}</li>
                 ))}
                 <li>release Date: {release_date}</li>
                 <li>Duration: {runtime}</li>
                 <li>Revenue: {revenue}</li>
-                {production_countries.map((country) => (
+                {production_countries.map((country,id) => (
                     <li key={id}>{country.name}</li>
                 ))}
             </ul>

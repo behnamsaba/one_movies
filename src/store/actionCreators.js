@@ -54,6 +54,19 @@ export const addWatch = createAsyncThunk(
     }
 );
 
+export const delWatch = createAsyncThunk(
+    'user/RemoveWatchList',
+    async (data, { rejectWithValue }) => {
+        try {
+            let response = await oneMoviesApi.addWatchList(data);
+            return response;
+        } catch (error) {
+            return rejectWithValue(error[0]);
+        }
+    }
+);
+
+
 //external functions for
 
 export const getGenres = createAsyncThunk('genres/fetchGenres', async () => {
