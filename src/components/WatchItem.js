@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-const WatchList = ({
+import { useDispatch, useSelector } from 'react-redux';
+import { delItem } from '@/store/actionCreators';
+
+const WatchItem = ({
     id,
     category,
     title,
@@ -8,6 +11,20 @@ const WatchList = ({
     rating,
     release_date,
 }) => {
+    const dispatch = useDispatch();
+    const userInfo = useSelector((data) => data.internalDataSlice.user);
+
+    const deleteHandler = async () => {
+        try {
+            await dispatch(
+                delItem({ username: userInfo.username, id })
+            ).unwrap();
+            console.log('clicked');
+        } catch (error) {
+            console.log('state', error);
+        }
+    };
+
     return (
         <div>
             <ul>
@@ -25,9 +42,10 @@ const WatchList = ({
                 <li>{title}</li>
                 <li>{rating}</li>
                 <li>{release_date}</li>
+                <button onClick={deleteHandler}>X</button>
             </ul>
         </div>
     );
 };
 
-export default WatchList;
+export default WatchItem;

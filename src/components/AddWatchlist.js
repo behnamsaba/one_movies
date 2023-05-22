@@ -3,6 +3,7 @@ import { addWatch } from '@/store/actionCreators';
 import { useState } from 'react';
 
 const AddWatchlist = ({
+    username,
     id,
     category,
     title,
@@ -14,11 +15,11 @@ const AddWatchlist = ({
 }) => {
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
-
     const addWatchListHandler = async () => {
         try {
             await dispatch(
                 addWatch({
+                    username,
                     category,
                     apiId: id,
                     title: title || name,
@@ -28,14 +29,15 @@ const AddWatchlist = ({
                 })
             ).unwrap();
         } catch (error) {
-          setError(error);
+          console.log("state", error)
+            setError(error);
         }
     };
 
     return (
         <>
             <button onClick={addWatchListHandler}>Add to watchlist</button>
-            {error && <p style={{color: 'red'}}>{error}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </>
     );
 };

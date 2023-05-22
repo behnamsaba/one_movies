@@ -13,8 +13,6 @@ class Users_Media {
         rating,
         releaseDate,
     }) {
-        console.log('model', username);
-        console.log('model2', apiId);
         const duplicateCheck = await db.query(
             `SELECT username
           FROM users_media
@@ -73,13 +71,15 @@ class Users_Media {
              FROM users_media
              WHERE username = $1
              AND api_id = $2
-             RETURNING username`,
+             RETURNING username, api_id`,
             [username, apiId]
         );
         const removedItem = result.rows[0];
 
         if (!removedItem) throw new NotFoundError(`No Media Found: ${apiId}`);
+        return removedItem
     }
+
 }
 
 export default Users_Media;

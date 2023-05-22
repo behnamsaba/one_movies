@@ -3,8 +3,11 @@
   "$id": "http://example.com/example.json",
   "type": "object",
   "properties": {
+    "username": {
+      "minLength": 1,
+      "maxLength": 30
+    },
     "apiId": {
-      "type": "string",
       "minLength": 1,
       "maxLength": 30
     },
@@ -16,7 +19,7 @@
     "title": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 20
+      "maxLength": 40
     },
     "posterPath": {
       "type": "string",
@@ -24,7 +27,6 @@
       "maxLength": 40
     },
     "rating": {
-      "type": "string",
       "minLength": 1,
       "maxLength": 5
     },

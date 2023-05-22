@@ -4,6 +4,7 @@ import {
     loginUser,
     userChange,
     addWatch,
+    delItem,
 } from './actionCreators';
 const initialState = {
     token: null,
@@ -13,8 +14,8 @@ const userSlice = createSlice({
     name: 'userActions',
     initialState,
     reducers: {
-        setToken:(state,action) => {
-          state.token = action.payload
+        setToken: (state, action) => {
+            state.token = action.payload;
         },
         clearToken: (state) => {
             state.token = null;
@@ -72,6 +73,17 @@ const userSlice = createSlice({
                 };
             })
             .addCase(addWatch.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
+            .addCase(delItem.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(delItem.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.user = {...state.user, watchlist: state.user.watchlist.filter(obj => (obj.id !== (action.payload)))}
+            })
+            .addCase(delItem.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
             });

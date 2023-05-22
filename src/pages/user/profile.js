@@ -1,11 +1,11 @@
 import Auth from '@/components/Auth';
 import { useSelector } from 'react-redux';
 import UserProfile from '@/components/UserProfile';
-import WatchList from '@/components/WatchList';
+import WatchItem from '@/components/WatchItem';
 import useClick from '@/hooks/useClick';
 
 const Profile = () => {
-    const proileData = useSelector((data) => data.internalDataSlice.user);
+    const profileData = useSelector((data) => data.internalDataSlice.user);
     const [page, setPage] = useClick();
     const changeHandler = () => {
         setPage();
@@ -16,13 +16,13 @@ const Profile = () => {
             {page ? (
                 <>
                     <button onClick={changeHandler}>WatchList</button>
-                    <UserProfile {...proileData} />
+                    <UserProfile {...profileData} />
                 </>
             ) : (
                 <>
                     <button onClick={changeHandler}>Account</button>
-                    {proileData.watchlist.map((item) => (
-                        <WatchList
+                    {profileData.watchlist.map((item) => (
+                        <WatchItem
                             key={item.id}
                             {...item}
                         />
