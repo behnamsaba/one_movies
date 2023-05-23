@@ -20,7 +20,7 @@ export default async function handler(req, res) {
                 await addWatchListHandler(req, res);
                 break;
             default:
-                res.setHeader('Allow', ['GET', 'PATCH', 'DELETE', 'DELETE', 'POST']);
+                res.setHeader('Allow', ['GET', 'PATCH', 'DELETE', 'POST']);
                 res.status(405).json({ error: `Method ${method} Not Allowed` });
         }
     } catch (err) {

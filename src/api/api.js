@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
 
 class oneMoviesApi {
-    // the token for interacting with the API will be stored here.
+    // the token for interactive with the API will be stored here.
     static token;
 
     static async request(endpoint, data = {}, method = 'get') {
@@ -11,20 +11,11 @@ class oneMoviesApi {
 
         const url = `${BASE_URL}/${endpoint}`;
         const headers = { Authorization: `${oneMoviesApi.token}` };
-        const params = method === 'get' || method === 'delete' ? data : {};
-
+        const params = method === 'get' ? data : {};
         try {
-            return (
-                await axios({
-                    url,
-                    method,
-                    data: method === 'get' || method === 'delete' ? {} : data,
-                    params,
-                    headers,
-                })
-            ).data;
+            return (await axios({ url, method, data, params, headers })).data;
         } catch (err) {
-            console.error('API Error:', err.response);
+            // console.error('API Error:', err.response);
             let message = err.response.data.err;
             throw Array.isArray(message) ? message : [message];
         }
@@ -66,12 +57,8 @@ class oneMoviesApi {
     }
 
     //remove an item from watchlist
-    static async removeItem(username, id) {
-        let res = await this.request(
-            `api/profile/${username}?apiId=${id}`,
-            {},
-            'delete'
-        );
+    static async removeItem(username, apiId) {
+        let res = await this.request(`api/profile/${username}/${apiId}`, null, 'delete');
         return res;
     }
 }

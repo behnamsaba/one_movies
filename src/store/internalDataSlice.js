@@ -28,7 +28,7 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            //adda new user
+            //adda a new user
             .addCase(registerUser.pending, (state) => {
                 state.status = 'loading';
             })
@@ -50,7 +50,7 @@ const userSlice = createSlice({
             .addCase(loginUser.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
-            })
+            })//user change profile
             .addCase(userChange.pending, (state) => {
                 state.status = 'loading';
             })
@@ -75,13 +75,13 @@ const userSlice = createSlice({
             .addCase(addWatch.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
-            })
+            })//Remove From an item from watchlist
             .addCase(delItem.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(delItem.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.user = {...state.user, watchlist: state.user.watchlist.filter(obj => (obj.id !== (action.payload)))}
+                state.user = {...state.user, watchlist: state.user.watchlist.filter(obj => (obj.id !== (action.payload.deleted)))}
             })
             .addCase(delItem.rejected, (state, action) => {
                 state.status = 'failed';

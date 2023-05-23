@@ -20,7 +20,6 @@ const UserProfile = ({ username, firstName, lastName, email }) => {
                 await dispatch(userChange({ username, data })).unwrap();
                 alert('Successfully Changed');
             } catch (e) {
-                console.log(e);
                 formik.setErrors({ backendError: e });
             }
         },

@@ -5,7 +5,7 @@ import userUpdate from '@/utils/backend-validation/schemas/userUpdate.json';
 import { BadRequestError } from '@/utils/NextErrors';
 
 export default async function updateUser(req, res) {
-    const { username } = req.query;
+    const username = req.query.params[0];
     const validator = validate(req.body, userUpdate);
     if (!validator.valid) {
         const errs = validator.errors.map((e) => e.stack);

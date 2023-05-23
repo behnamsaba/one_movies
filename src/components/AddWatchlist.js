@@ -29,7 +29,6 @@ const AddWatchlist = ({
                 })
             ).unwrap();
         } catch (error) {
-          console.log("state", error)
             setError(error);
         }
     };

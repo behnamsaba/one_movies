@@ -30,6 +30,7 @@ const Navbar = () => {
                     <>
                         <NavbarLink href='/user/profile'>
                             {profileData.user.username}
+                            WATCHLIST:{profileData.user.watchlist.length}
                         </NavbarLink>
                         <li className={styles.nav}>
                             <LogOut />

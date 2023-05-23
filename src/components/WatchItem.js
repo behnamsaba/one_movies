@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { delItem } from '@/store/actionCreators';
+import oneMoviesApi from '@/api/api';
 
 const WatchItem = ({
     id,
@@ -11,20 +12,17 @@ const WatchItem = ({
     rating,
     release_date,
 }) => {
-    const dispatch = useDispatch();
     const userInfo = useSelector((data) => data.internalDataSlice.user);
-
+    const dispatch = useDispatch();
     const deleteHandler = async () => {
         try {
-            await dispatch(
-                delItem({ username: userInfo.username, id })
-            ).unwrap();
-            console.log('clicked');
-        } catch (error) {
-            console.log('state', error);
+            await dispatch(delItem({ username: userInfo.username, apiId: id })).unwrap();
+
+            // await oneMoviesApi.removeItem(userInfo.username,id)
+        } catch (e) {
+          
         }
     };
-
     return (
         <div>
             <ul>
@@ -42,7 +40,9 @@ const WatchItem = ({
                 <li>{title}</li>
                 <li>{rating}</li>
                 <li>{release_date}</li>
-                <button onClick={deleteHandler}>X</button>
+                <button onClick={() => deleteHandler()}>
+                    X {userInfo.username}, {id}
+                </button>
             </ul>
         </div>
     );

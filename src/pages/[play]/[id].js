@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 const Id = ({ info }) => {
     const userInfo = useSelector((data) => data.internalDataSlice.user);
-    console.log(userInfo)
     const {
         query: { play },
     } = useRouter();

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import oneMoviesApi from '../api/api';
+import oneMoviesApi from '@/api/api';
 import MovieDbApi from '@/api/externalApi';
 
 // Internal database functions
@@ -46,7 +46,9 @@ export const addWatch = createAsyncThunk(
     'user/addWatchList',
     async (data, { rejectWithValue }) => {
         try {
-            let response = await oneMoviesApi.addWatchList(data.username, {...data});
+            let response = await oneMoviesApi.addWatchList(data.username, {
+                ...data,
+            });
             return response;
         } catch (error) {
             return rejectWithValue(error[0]);
@@ -56,10 +58,9 @@ export const addWatch = createAsyncThunk(
 
 export const delItem = createAsyncThunk(
     'user/RemoveWatchList',
-    async ({ username, id }, { rejectWithValue }) => {
+    async ({ username, apiId }, { rejectWithValue }) => {
         try {
-            let response = await oneMoviesApi.removeItem(username, id);
-            console.error("resss",response)
+            const response = await oneMoviesApi.removeItem(username, apiId);
             return response;
         } catch (error) {
             return rejectWithValue(error[0]);
