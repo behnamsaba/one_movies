@@ -69,6 +69,7 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
             id={id}
             type={type}
             {...props}
+            className='input-text'
         />
         {formik.touched[id] && formik.errors[id] ? (
             <p>{formik.errors[id]}</p>

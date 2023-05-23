@@ -1,6 +1,6 @@
-import movieDbApi from '../api/externalApi';
-import MediaList from '../components/MediaList';
-import Content from '../components/Content';
+import movieDbApi from '@/api/externalApi';
+import MediaList from '@/components/MediaList';
+import Content from '@/components/Content';
 
 export default function Home({ latestMovies, latestSeries }) {
     return (
