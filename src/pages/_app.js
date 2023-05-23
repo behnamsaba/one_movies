@@ -1,4 +1,3 @@
-// pages/_app.js
 import { Provider } from 'react-redux';
 import store from '../store';
 import GlobalActions from '../components/GlobalActions';
