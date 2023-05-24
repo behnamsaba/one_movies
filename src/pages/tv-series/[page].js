@@ -1,14 +1,14 @@
-import movieDbApi from '../../api/externalApi';
+import Format from '@/layout/Format';
+import movieDbApi from '@/api/externalApi';
 import Link from 'next/link';
-import MediaList from '../../components/MediaList';
-import Content from '../../components/Content';
+import MediaList from '@/components/MediaList';
+import Content from '@/components/Content';
 
 const tvSeries = ({ initialSeries, page }) => {
 
 
     return (
-        <div>
-            <h1>Your heading here</h1>
+        <Format>
             <h1>page number {page}</h1>
             <Content title="Latest TV-Series" items={initialSeries} Component={MediaList} />
 
@@ -16,7 +16,7 @@ const tvSeries = ({ initialSeries, page }) => {
             <button>
                 <Link href={`/tv-series/${parseInt(page) + 1}`}>Next Page</Link>
             </button>
-        </div>
+        </Format>
     );
 };
 

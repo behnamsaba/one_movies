@@ -7,8 +7,6 @@ import '@/styles/globals.css';
 function MyApp({ Component, pageProps }) {
     return (
         <Provider store={store}>
-            <GlobalActions />
-            <Navbar />
             <Component {...pageProps} />
         </Provider>
     );

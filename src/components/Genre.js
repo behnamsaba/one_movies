@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadingSpinner from './Loading';
+import Link from 'next/link';
 
 const Genre = () => {
     const data = useSelector((data) => data.externalApiDataSlice.genresList);
@@ -20,12 +21,12 @@ const Genre = () => {
     }
 
     return (
-        <div
-            onMouseLeave={handleMouseOut}
-            className='list-container'>
-            <button onMouseOver={handleMouseOver}>
+        <div onMouseLeave={handleMouseOut}>
+            <Link
+                href='/genre'
+                onMouseOver={handleMouseOver}>
                 Genre
-            </button>
+            </Link>
             {showList && (
                 <ul className='list'>
                     {data.genres.map((item) => (
@@ -38,4 +39,3 @@ const Genre = () => {
 };
 
 export default Genre;
-

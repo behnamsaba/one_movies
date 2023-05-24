@@ -6,7 +6,8 @@ const MediaList = ({
     id,
     name,
     title,
-    date,
+    release_date,
+    first_air_date,
     poster_path,
     vote_average,
     original_language,
@@ -14,7 +15,7 @@ const MediaList = ({
 }) => {
     const [showOverview, setOverview] = useState(false);
 
-    const handleMouseToggle = () => setOverview(prev => !prev);
+    const handleMouseToggle = () => setOverview((prev) => !prev);
 
     const isMovie = Boolean(title);
     const linkPath = isMovie ? 'movie' : 'show';
@@ -34,15 +35,21 @@ const MediaList = ({
     );
 
     return (
-        <div className='Item'>
+        <div className='card'>
             {imageComponent}
-            <ul>
-                <li>{altText}</li>
-                <li>{date}</li>
-                <li>{vote_average}</li>
-                <li>{original_language}</li>
-                {showOverview && <li><p>{overview}</p></li>}
-            </ul>
+            <div className='px-6 pt-4 pb-2'>
+                <div class='font-bold text-xl mb-2'>{ altText }</div>
+                <span className='media-tags'>
+                    {release_date || first_air_date}
+                </span>
+                <span className='media-tags'>
+                    {vote_average}
+                </span>
+                <span className='media-tags'>
+                    {original_language}
+                </span>
+                {showOverview && <p className='media-description'>{overview}</p>}
+            </div>
         </div>
     );
 };

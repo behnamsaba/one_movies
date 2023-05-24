@@ -1,3 +1,4 @@
+import Format from '@/layout/Format';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
@@ -33,7 +34,7 @@ const Login = () => {
     });
 
     return (
-        <>
+        <Format>
             <form onSubmit={formik.handleSubmit}>
                 <InputField
                     id='username'
@@ -58,7 +59,7 @@ const Login = () => {
             <p>
                 Dont have account? <Link href={'/signup'}>Register</Link>
             </p>
-        </>
+        </Format>
     );
 };
 

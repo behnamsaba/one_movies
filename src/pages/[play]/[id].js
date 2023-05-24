@@ -1,3 +1,4 @@
+import Format from '@/layout/Format';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import movieDbApi from '@/api/externalApi';
@@ -12,7 +13,7 @@ const Id = ({ info }) => {
         query: { play },
     } = useRouter();
     return (
-        <div>
+        <Format>
             {play === 'movie' ? (
                 <MovieDetails {...info} />
             ) : (
@@ -25,7 +26,7 @@ const Id = ({ info }) => {
                     {...info}
                 />
             )}
-        </div>
+        </Format>
     );
 };
 

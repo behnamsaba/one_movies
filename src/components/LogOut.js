@@ -2,6 +2,7 @@ import { clearToken } from '../store/internalDataSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { AiOutlineLogout } from 'react-icons/ai';
+import Link from 'next/link';
 const LogOut = () => {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -12,12 +13,13 @@ const LogOut = () => {
     };
     return (
         <div>
-            <button
+            <Link
+                href='/'
                 onClick={handleLogout}
                 style={{ display: 'flex', alignItems: 'center'}}>
                 Logout
                 <AiOutlineLogout style={{ marginLeft: '5px'}} color='red'/>
-            </button>
+            </Link>
         </div>
     );
 };

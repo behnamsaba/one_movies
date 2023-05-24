@@ -1,3 +1,4 @@
+import Format from '@/layout/Format';
 import Auth from '@/components/Auth';
 import { useSelector } from 'react-redux';
 import UserProfile from '@/components/UserProfile';
@@ -12,7 +13,7 @@ const Profile = () => {
     };
 
     return (
-        <>
+        <Format>
             {page ? (
                 <>
                     <button onClick={changeHandler}>WatchList</button>
@@ -29,7 +30,7 @@ const Profile = () => {
                     ))}
                 </>
             )}
-        </>
+        </Format>
     );
 };
 

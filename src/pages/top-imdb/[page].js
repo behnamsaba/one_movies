@@ -1,13 +1,14 @@
-import movieDbApi from '../../api/externalApi';
+import Format from '@/layout/Format';
+import movieDbApi from '@/api/externalApi';
 import Link from 'next/link';
-import MediaList from '../../components/MediaList';
-import Content from '../../components/Content';
+import MediaList from '@/components/MediaList';
+import Content from '@/components/Content';
 
 const Top = ({ initialMovies, page }) => {
     return (
-        <div>
-            <h1>Your heading here</h1>
+        <Format>
             <h1>page number {page}</h1>
+            <p className='page-description'>The IMDb Top 250 is a list of the top rated 250 films, based on ratings by the registered users of the website using the methods described.</p>
             <Content
                 title='Top IMDb'
                 items={initialMovies}
@@ -18,7 +19,7 @@ const Top = ({ initialMovies, page }) => {
             <button>
                 <Link href={`/top-imdb/${parseInt(page) + 1}`}>Next Page</Link>
             </button>
-        </div>
+        </Format>
     );
 };
 
