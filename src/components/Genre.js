@@ -21,7 +21,7 @@ const Genre = () => {
     }
 
     return (
-        <div onMouseLeave={handleMouseOut}>
+        <div onMouseLeave={handleMouseOut} className="w-64 h-32 transition-transform duration-100 transform hover:scale-110">
             <Link
                 href='/genre'
                 onMouseOver={handleMouseOver}>
