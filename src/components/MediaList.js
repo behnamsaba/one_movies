@@ -39,13 +39,13 @@ const MediaList = ({
             {imageComponent}
             <div className='px-6 pt-4 pb-2'>
                 <div className='font-bold text-xl mb-2'>{ altText }</div>
-                <span className='media-tags'>
+                <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
                     {release_date || first_air_date}
                 </span>
-                <span className='media-tags'>
+                <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
                     {vote_average}
                 </span>
-                <span className='media-tags'>
+                <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
                     {original_language}
                 </span>
                 {showOverview && <p className='media-description'>{overview}</p>}
