@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadingSpinner from './Loading';
 import Link from 'next/link';
+import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
 
 const Genre = () => {
     const data = useSelector((data) => data.externalApiDataSlice.genresList);
@@ -19,18 +20,19 @@ const Genre = () => {
     if (!data || data.status === 'loading') {
         return <LoadingSpinner />;
     }
-
+    // items-center-w[340px] h-[340px]
     return (
-        <div onMouseLeave={handleMouseOut} className="w-64 h-32 transition-transform duration-100 transform hover:scale-110">
-            <Link
-                href='/genre'
-                onMouseOver={handleMouseOver}>
-                Genre
-            </Link>
+        <div
+            className='relative'>
+            <a onMouseOver={handleMouseOver}>
+                Genres{' '}
+                {showList ? <AiOutlineCaretUp /> : <AiOutlineCaretDown />}
+            </a>
+
             {showList && (
-                <ul className='list'>
+                <ul onMouseLeave={handleMouseOut} className='absolute top-full mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
                     {data.genres.map((item) => (
-                        <li key={item.id}>{item.name}</li>
+                        <li key={item.id} className='p-1 hover:bg-gray-200 cursor-pointer text-black py-2'>{item.name}</li>
                     ))}
                 </ul>
             )}
