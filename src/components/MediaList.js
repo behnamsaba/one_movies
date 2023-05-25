@@ -38,7 +38,7 @@ const MediaList = ({
         <div className='card'>
             {imageComponent}
             <div className='px-6 pt-4 pb-2'>
-                <div class='font-bold text-xl mb-2'>{ altText }</div>
+                <div className='font-bold text-xl mb-2'>{ altText }</div>
                 <span className='media-tags'>
                     {release_date || first_air_date}
                 </span>

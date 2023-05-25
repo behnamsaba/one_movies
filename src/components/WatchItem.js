@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { delItem } from '@/store/actionCreators';
-import oneMoviesApi from '@/api/api';
+
 
 const WatchItem = ({
     id,
@@ -17,8 +17,6 @@ const WatchItem = ({
     const deleteHandler = async () => {
         try {
             await dispatch(delItem({ username: userInfo.username, apiId: id })).unwrap();
-
-            // await oneMoviesApi.removeItem(userInfo.username,id)
         } catch (e) {
           
         }

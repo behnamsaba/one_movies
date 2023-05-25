@@ -36,7 +36,13 @@ export class ForbiddenError extends NextError {
     }
 }
 
-/** Error inside Middleware  */
+
+export class UserError extends NextError {
+    constructor(message = 'Not Authorized to access this route') {
+        super(message, 403);
+    }
+}
+
 export class AuthError extends Error {
     constructor(message) {
         super(message);
@@ -51,12 +57,6 @@ export class TokenError extends AuthError {
     }
 }
 
-export class UserError extends AuthError {
-    constructor(message) {
-        super(message);
-        this.name = 'UserError';
-    }
-}
 
 export class UnauthorizedError extends NextError {
     constructor(message = 'Bad Request') {
