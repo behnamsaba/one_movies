@@ -43,7 +43,7 @@ function Navbar() {
     const { user } = useSelector((state) => state.internalDataSlice);
 
     return (
-        <nav className='relative'>
+        <nav className='bg-gray-800 text-zinc-300 relative'>
             <Link
                 href='/'
                 className='absolute left-5 top-1/2 transform -translate-y-1/2'>

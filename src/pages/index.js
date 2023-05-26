@@ -4,7 +4,6 @@ import MediaList from '@/components/MediaList';
 import Content from '@/components/Content';
 
 export default function Home({ latestMovies, latestSeries }) {
-    console.log(latestSeries)
     return (
         <Format>
           <div className='page-description'>

@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { addWatch } from '@/store/actionCreators';
 import { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
+
 const AddWatchlist = ({
     username,
     id,
@@ -34,15 +35,16 @@ const AddWatchlist = ({
     };
 
     return (
-        <>
+        <div className="flex justify-center items-center flex-col">
             <button
                 onClick={addWatchListHandler}
-                className='flex items-center'>
-                <AiOutlinePlus className='mr-2' />
+                className="btn-red flex items-center justify-center"
+            >
+                <AiOutlinePlus className="mr-2" />
                 <span>Add to watchlist</span>
             </button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-        </>
+            {error && <p className="text-white mt-4 font-bold">{error}</p>}
+        </div>
     );
 };
 

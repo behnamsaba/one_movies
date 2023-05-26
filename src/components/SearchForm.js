@@ -9,26 +9,20 @@ const SearchForm = () => {
             query: '',
         },
         onSubmit: (values) => {
+          console.log(values)
             router.push(`/search/${values.query}`);
         },
     });
 
     return (
-        <form onSubmit={formik.handleSubmit} style={{ position: 'relative' }}>
-            <AiOutlineSearch
-                style={{
-                    position: 'absolute',
-                    top: '50%',
-                    right: '10%',
-                    transform: 'translateY(-50%)',
-                }}
-            />
+        <form onSubmit={formik.handleSubmit} className="relative">
+            <AiOutlineSearch className="absolute top-0 left-0 mt-3 ml-3 text-gray-700" />
             <input
                 id='query'
                 type='text'
                 placeholder='Enter your keywords...'
                 {...formik.getFieldProps('query')}
-                className='input-text'
+                className='pl-10 pr-2 py-2 border border-gray-200 rounded-lg w-full text-black'
             />
         </form>
     );

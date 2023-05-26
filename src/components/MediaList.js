@@ -39,8 +39,7 @@ const MediaList = ({
         <div
             className='card relative'
             onMouseEnter={handleMouseOver}
-            onMouseLeave={handleMouseOut}
-        >
+            onMouseLeave={handleMouseOut}>
             {imageComponent}
             <div className='px-6 pt-4 pb-2'>
                 <div className='font-bold text-xl mb-2'>{altText}</div>
@@ -53,7 +52,7 @@ const MediaList = ({
                 </span>
                 <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
                     <GrLanguage className='inline-block mr-1' />
-                    {original_language.toUpperCase()}
+                    {original_language ? original_language.toUpperCase() : ''}
                 </span>
             </div>
             {showOverview && (

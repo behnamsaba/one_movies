@@ -35,29 +35,29 @@ const Login = () => {
 
     return (
         <Format>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={formik.handleSubmit} className='formik-form'>
                 <InputField
                     id='username'
-                    label='Username:'
+                    label='Username'
                     formik={formik}
                     {...formik.getFieldProps('username')}
                 />
 
                 <InputField
                     id='password'
-                    label='Password:'
+                    label='Password'
                     type='password'
                     formik={formik}
                     {...formik.getFieldProps('password')}
                 />
-                <button type='submit'>Login</button>
+                <button type='submit' className='bg-indigo-500 text-white font-semibold py-2 px-4 rounded mt-4 hover:bg-indigo-700 focus:outline-none'>Login</button>
 
                 {formik.errors.backendError && (
                     <div>{formik.errors.backendError}</div>
                 )}
             </form>
-            <p>
-                Dont have account? <Link href={'/signup'}>Register</Link>
+            <p className='text-center mt-6'>
+                Dont have account? <Link href='/signup' className='text-red-800 hover:underline'>Register</Link>
             </p>
         </Format>
     );
@@ -65,7 +65,7 @@ const Login = () => {
 
 const InputField = ({ id, label, type = 'text', formik, ...props }) => (
     <>
-        <label htmlFor={id}>{label}</label>
+        <label htmlFor={id} className='formik-label'>{label}</label>
         <input
             id={id}
             type={type}
@@ -73,7 +73,7 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
             className='input-text'
         />
         {formik.touched[id] && formik.errors[id] ? (
-            <p>{formik.errors[id]}</p>
+            <p className='formik-error'>{formik.errors[id]}</p>
         ) : null}
     </>
 );

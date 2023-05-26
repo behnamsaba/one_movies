@@ -1,18 +1,17 @@
 import Format from '@/layout/Format';
-import movieDbApi from '../../api/externalApi';
+import movieDbApi from '@/api/externalApi';
 import Link from 'next/link';
-import MediaList from '../../components/MediaList';
-import Content from '../../components/Content';
+import MediaList from '@/components/MediaList';
+import Content from '@/components/Content';
 
 const Movies = ({ initialMovies, page }) => {
-
-
     return (
         <Format>
-            <Content title="Latest Movies" items={initialMovies} Component={MediaList} />
-            
-
-            <button>{page}</button>
+            <Content
+                title='Latest Movies'
+                items={initialMovies}
+                Component={MediaList}
+            />
             <button>
                 <Link href={`/movies/${parseInt(page) + 1}`}>Next Page</Link>
             </button>
@@ -21,12 +20,12 @@ const Movies = ({ initialMovies, page }) => {
 };
 
 export async function getStaticProps({ params }) {
-    const page = params.page
+    const page = params.page;
     const initialMovies = await movieDbApi.getMovies(page);
 
     return {
         props: {
-            initialMovies:initialMovies.results,
+            initialMovies: initialMovies.results,
             page,
         },
     };

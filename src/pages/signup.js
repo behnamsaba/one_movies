@@ -43,7 +43,7 @@ const SignUp = () => {
 
     return (
         <Format>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} className='formik-form'>
             <InputField
                 id='firstName'
                 label='First Name:'
@@ -76,7 +76,7 @@ const SignUp = () => {
                 formik={formik}
                 {...formik.getFieldProps('password')}
             />
-            <button type='submit'>Join!</button>
+            <button type='submit' className='bg-indigo-500 text-white font-semibold py-2 px-4 rounded mt-4 hover:bg-indigo-700 focus:outline-none'>Join!</button>
 
             {formik.errors.backendError && (
                 <div>{formik.errors.backendError}</div>
@@ -88,7 +88,7 @@ const SignUp = () => {
 
 const InputField = ({ id, label, type = 'text', formik, ...props }) => (
     <>
-        <label htmlFor={id}>{label}</label>
+        <label htmlFor={id} className='formik-label'>{label}</label>
         <input
             id={id}
             type={type}
@@ -96,7 +96,7 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
             className='input-text'
         />
         {formik.touched[id] && formik.errors[id] ? (
-            <p>{formik.errors[id]}</p>
+            <p className='formik-error'>{formik.errors[id]}</p>
         ) : null}
     </>
 );

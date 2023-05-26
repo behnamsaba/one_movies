@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadingSpinner from './Loading';
+import Link from 'next/link';
 
 const Genre = () => {
-    const data = useSelector((data) => data.externalApiDataSlice.genresList);
+    const data = useSelector((data) => data.externalApiDataSlice);
 
     const [showList, setShowList] = useState(false);
 
@@ -26,11 +27,12 @@ const Genre = () => {
                 <ul
                     onMouseLeave={handleMouseOut}
                     className='absolute z-10 top-full mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-y-auto max-h-48'>
-                    {data.genres.map((item) => (
+                    {data.genresList.map((item) => (
                         <li
                             key={item.id}
-                            className='p-1 hover:bg-gray-200 cursor-pointer text-black py-2'>
-                            {item.name}
+                            className='p-1 hover:bg-gray-200 cursor-pointer text-black py-2'><Link href={`/genre/${item.name}/${item.id}/1`}>{item.name}
+                            </Link>
+
                         </li>
                     ))}
                 </ul>

@@ -1,6 +1,5 @@
 import GlobalActions from '@/components/GlobalActions';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import Head from 'next/head';
 const Format = ({ children }) => {
     return (
@@ -11,7 +10,6 @@ const Format = ({ children }) => {
             <GlobalActions />
             <Navbar />
             <main>{children}</main>
-            <Footer />
         </>
     );
 };

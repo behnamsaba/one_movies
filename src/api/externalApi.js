@@ -29,7 +29,13 @@ class MovieDbApi {
     }
 
     static async getMovies(page = '1') {
-        return this.request('discover/movie', 'get', { page, sort_by: 'popularity.desc', include_adult: false, include_video: false, with_watch_monetization_types: 'flatrate' });
+        return this.request('discover/movie', 'get', {
+            page,
+            sort_by: 'popularity.desc',
+            include_adult: false,
+            include_video: false,
+            with_watch_monetization_types: 'flatrate',
+        });
     }
 
     static async getMovieDetails(id = '980078') {
@@ -48,7 +54,7 @@ class MovieDbApi {
         return this.request('genre/movie/list');
     }
 
-    static async getLatestSeries(page = "1") {
+    static async getLatestSeries(page = '1') {
         return this.request('tv/airing_today', 'get', { page });
     }
 
@@ -57,25 +63,34 @@ class MovieDbApi {
     }
 
     static async movieSearch(query) {
-        return this.request('search/multi', 'get', { page: '1', include_adult: true, query });
+        return this.request('search/multi', 'get', {
+            page: '1',
+            include_adult: false,
+            query,
+        });
     }
 
-    static async getGenres(){
+    static async getGenres() {
         return this.request(`genre/movie/list`);
-        
     }
 
     static async imdbTop() {
-        return this.request('movie/top_rated', 'get', {page: '1'})
+        return this.request('movie/top_rated', 'get', { page: '1' });
     }
 
     static async getSimilarTv(id) {
-        return this.request(`tv/${id}/similar`, 'get')
+        return this.request(`tv/${id}/similar`, 'get');
     }
-    static async getSimilarMovie(id){
-        return this.request(`movie/${id}/similar`, 'get')
+    static async getSimilarMovie(id) {
+        return this.request(`movie/${id}/similar`, 'get');
     }
+    static async searchByGenre(with_genres,page){
+      return this.request('discover/movie', 'get', {
+        with_genres,
+        page
+    })
 
+    }
 }
 
 export default MovieDbApi;

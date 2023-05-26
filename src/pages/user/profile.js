@@ -16,20 +16,34 @@ const Profile = () => {
         <Format>
             {page ? (
                 <>
-                    <button onClick={changeHandler}>WatchList</button>
+                    <button
+                        onClick={changeHandler}
+                        className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-auto block'>
+                        WatchList
+                    </button>
                     <UserProfile {...profileData} />
                 </>
             ) : (
                 <>
-                    <button onClick={changeHandler}>Account</button>
-                    <div className='cards'>
-                        {profileData.watchlist.map((item) => (
-                            <WatchItem
-                                key={item.id}
-                                {...item}
-                            />
-                        ))}
-                    </div>
+                    <button
+                        onClick={changeHandler}
+                        className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-auto block'>
+                        Account
+                    </button>
+                    {profileData.watchlist.length === 0 ? (
+                        <p className='text-white font-bold py-2 px-4 rounded mx-auto block'>
+                            There is currently no watchlist now
+                        </p>
+                    ) : (
+                        <div className='cards'>
+                            {profileData.watchlist.map((item) => (
+                                <WatchItem
+                                    key={item.id}
+                                    {...item}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </>
             )}
         </Format>

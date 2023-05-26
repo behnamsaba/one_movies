@@ -72,5 +72,5 @@ export const delItem = createAsyncThunk(
 
 export const getGenres = createAsyncThunk('genres/fetchGenres', async () => {
     let response = await MovieDbApi.getGenres();
-    return response;
+    return response.genres;
 });
