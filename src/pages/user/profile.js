@@ -22,12 +22,14 @@ const Profile = () => {
             ) : (
                 <>
                     <button onClick={changeHandler}>Account</button>
-                    {profileData.watchlist.map((item) => (
-                        <WatchItem
-                            key={item.id}
-                            {...item}
-                        />
-                    ))}
+                    <div className='cards'>
+                        {profileData.watchlist.map((item) => (
+                            <WatchItem
+                                key={item.id}
+                                {...item}
+                            />
+                        ))}
+                    </div>
                 </>
             )}
         </Format>

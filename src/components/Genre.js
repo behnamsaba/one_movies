@@ -25,7 +25,7 @@ const Genre = () => {
             {showList && (
                 <ul
                     onMouseLeave={handleMouseOut}
-                    className='absolute top-full mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
+                    className='absolute z-10 top-full mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-y-auto max-h-48'>
                     {data.genres.map((item) => (
                         <li
                             key={item.id}

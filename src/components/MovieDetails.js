@@ -1,7 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import { numberWithCommas } from '@/handlers/numberWithCommas';
 const MovieDetails = ({
     id,
     original_title,
@@ -16,33 +15,40 @@ const MovieDetails = ({
 }) => {
     const router = useRouter();
     return (
-        <div>
-            <button onClick={() => router.back()}>Back</button>
-            <h1>{original_title}</h1>
-            <ul>
-                <li>
-                    <Image
-                        src={`https://image.tmdb.org/t/p/original${poster_path}`}
-                        alt={original_title}
-                        width={200}
-                        height={200}
-                    />
-                </li>
-                <li>
-                    <p>{overview}</p>
-                </li>
-                <li>Budget :{budget}</li>
-                <li>Genres:</li>
-                {genres.map((genre,id) => (
-                    <li key={id}>{genre.name}</li>
-                ))}
-                <li>release Date: {release_date}</li>
-                <li>Duration: {runtime}</li>
-                <li>Revenue: {revenue}</li>
+        <div className="flex flex-col md:flex-row bg-gray-900 text-white rounded-lg shadow-xl overflow-hidden m-4">
+            <div className="flex-shrink-0">
+                <Image
+                    src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                    alt={original_title}
+                    width={400}
+                    height={600}
+                    className="h-full w-full object-cover"
+                />
+            </div>
+            <div className="p-8">
+                <button 
+                    onClick={() => router.back()}
+                    className="mb-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Back
+                </button>
+                <h1 className="text-4xl mb-2 leading-tight font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">{original_title}</h1>
+                <p className="text-xl font-medium mb-4 text-gray-300">{overview}</p>
+                <p className="font-bold mb-2 text-gray-400">Budget: {numberWithCommas(budget)} $</p>
+                <div className="font-bold mb-2 text-gray-400">Genres:</div>
+                <div className="flex flex-wrap gap-2">
+                    {genres.map((genre,id) => (
+                        <span key={id} className="inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-200 mr-2 mb-2 bg-gray-800">{genre.name}</span>
+                    ))}
+                </div>
+                <p className="font-bold mb-2 text-gray-400">Release Date: {release_date}</p>
+                <p className="font-bold mb-2 text-gray-400">Duration: {runtime}</p>
+                <p className="font-bold mb-2 text-gray-400">Revenue: {numberWithCommas(revenue)} $</p>
+                <div className="font-bold mb-2 text-gray-400">Production Countries:</div>
                 {production_countries.map((country,id) => (
-                    <li key={id}>{country.name}</li>
+                    <p key={id} className="mb-2 text-gray-300">{country.name}</p>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

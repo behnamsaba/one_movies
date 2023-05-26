@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { delItem } from '@/store/actionCreators';
-
+import { AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineStar } from 'react-icons/ai';
 
 const WatchItem = ({
     id,
@@ -16,17 +17,18 @@ const WatchItem = ({
     const dispatch = useDispatch();
     const deleteHandler = async () => {
         try {
-            await dispatch(delItem({ username: userInfo.username, apiId: id })).unwrap();
-        } catch (e) {
-          
-        }
+            await dispatch(
+                delItem({ username: userInfo.username, apiId: id })
+            ).unwrap();
+        } catch (e) {}
     };
     return (
-        <div>
-            <ul>
-                <li>
+        <div className='bg-white shadow overflow-hidden sm:rounded-lg mb-4 max-w-sm'>
+            <ul className='border-t border-gray-200 divide-y divide-gray-200'>
+                <li className='p-4'>
                     <Link href={`/${category}/${id}`}>
                         <Image
+                            className='object-cover'
                             src={`https://image.tmdb.org/t/p/original${poster_path}`}
                             alt={title}
                             width={200}
@@ -34,13 +36,22 @@ const WatchItem = ({
                         />
                     </Link>
                 </li>
-                <li>{category}</li>
-                <li>{title}</li>
-                <li>{rating}</li>
-                <li>{release_date}</li>
-                <button onClick={() => deleteHandler()}>
-                    X {userInfo.username}, {id}
-                </button>
+                <li className='p-2'>
+                    TYPE-{category}
+                </li>
+                <li className='p-2'>
+                    Name-{title}
+                </li>
+                <li className='p-2'>
+                    <AiOutlineStar className='inline-block mr-1' />
+                    {rating}
+                </li>
+                <li className='p-2'>
+                    {release_date}
+                </li>
+                <li className='p-2 flex justify-end'>
+                    <AiOutlineDelete onClick={() => deleteHandler()} size={20} color='red'/>
+                </li>
             </ul>
         </div>
     );

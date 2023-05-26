@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { addWatch } from '@/store/actionCreators';
 import { useState } from 'react';
-
+import { AiOutlinePlus } from 'react-icons/ai';
 const AddWatchlist = ({
     username,
     id,
@@ -35,7 +35,12 @@ const AddWatchlist = ({
 
     return (
         <>
-            <button onClick={addWatchListHandler}>Add to watchlist</button>
+            <button
+                onClick={addWatchListHandler}
+                className='flex items-center'>
+                <AiOutlinePlus className='mr-2' />
+                <span>Add to watchlist</span>
+            </button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </>
     );

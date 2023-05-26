@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
+import { AiOutlineStar } from 'react-icons/ai';
+import { GrLanguage } from 'react-icons/gr';
 
 const MediaList = ({
     id,
@@ -13,9 +15,10 @@ const MediaList = ({
     original_language,
     overview,
 }) => {
-    const [showOverview, setOverview] = useState(false);
+    const [showOverview, setShowOverview] = useState(false);
 
-    const handleMouseToggle = () => setOverview((prev) => !prev);
+    const handleMouseOver = () => setShowOverview(true);
+    const handleMouseOut = () => setShowOverview(false);
 
     const isMovie = Boolean(title);
     const linkPath = isMovie ? 'movie' : 'show';
@@ -28,28 +31,36 @@ const MediaList = ({
                 alt={altText}
                 width={200}
                 height={200}
-                onMouseEnter={handleMouseToggle}
-                onMouseLeave={handleMouseToggle}
             />
         </Link>
     );
 
     return (
-        <div className='card'>
+        <div
+            className='card relative'
+            onMouseEnter={handleMouseOver}
+            onMouseLeave={handleMouseOut}
+        >
             {imageComponent}
             <div className='px-6 pt-4 pb-2'>
-                <div className='font-bold text-xl mb-2'>{ altText }</div>
+                <div className='font-bold text-xl mb-2'>{altText}</div>
                 <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
                     {release_date || first_air_date}
                 </span>
                 <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
+                    <AiOutlineStar className='inline-block mr-1' />
                     {vote_average}
                 </span>
                 <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
-                    {original_language}
+                    <GrLanguage className='inline-block mr-1' />
+                    {original_language.toUpperCase()}
                 </span>
-                {showOverview && <p className='media-description'>{overview}</p>}
             </div>
+            {showOverview && (
+                <div className='absolute bottom-0 left-0 right-0 bg-white text-black p-2'>
+                    {overview}
+                </div>
+            )}
         </div>
     );
 };
