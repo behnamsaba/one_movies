@@ -27,7 +27,8 @@ function UserSection({ user }) {
                     <LogOut />
                 </div>
             ) : (
-                <div className='flex items-center'>
+                <div className='flex flex-col md:flex-row gap-5 absolute right-5 md:right-10'
+                 >
                     <Link href='/login'>
                         <span>login</span>
                         <AiOutlineLogin />

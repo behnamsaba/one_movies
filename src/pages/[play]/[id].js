@@ -5,9 +5,11 @@ import movieDbApi from '@/api/externalApi';
 import ShowDetails from '@/components/ShowDetails';
 import MovieDetails from '@/components/MovieDetails';
 import AddWatchlist from '@/components/AddWatchlist';
+import Content from '@/components/Content';
+import MediaList from '@/components/MediaList';
 import { useSelector } from 'react-redux';
 
-const Id = ({ info }) => {
+const Id = ({ info, similar }) => {
     const userInfo = useSelector((data) => data.internalDataSlice.user);
     const {
         query: { play },
@@ -26,6 +28,11 @@ const Id = ({ info }) => {
                     {...info}
                 />
             )}
+            <Content
+                title='Similar'
+                items={similar.results}
+                Component={MediaList}
+            />
         </Format>
     );
 };
@@ -41,16 +48,19 @@ export async function getServerSideProps({ params }) {
     }
 
     let info;
+    let similar;
     if (play === 'movie') {
         info = await movieDbApi.getMovieDetails(id);
+        similar = await movieDbApi.getSimilarMovie(id);
     } else if (play === 'show') {
         info = await movieDbApi.getShowDetails(id);
+        similar = await movieDbApi.getSimilarTv(id);
     } else {
         return { notFound: true };
     }
 
     return {
-        props: { info },
+        props: { info, similar },
     };
 }
 

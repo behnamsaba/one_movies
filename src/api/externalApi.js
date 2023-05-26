@@ -69,6 +69,13 @@ class MovieDbApi {
         return this.request('movie/top_rated', 'get', {page: '1'})
     }
 
+    static async getSimilarTv(id) {
+        return this.request(`tv/${id}/similar`, 'get')
+    }
+    static async getSimilarMovie(id){
+        return this.request(`movie/${id}/similar`, 'get')
+    }
+
 }
 
 export default MovieDbApi;
