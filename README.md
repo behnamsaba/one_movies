@@ -14,24 +14,28 @@ To run this project, the following packages are required:
 
 ## Dependencies:
 
-1. **@reduxjs/toolkit** (v1.9.5 or newer): Redux toolkit for efficient state management.
-2. **autoprefixer** (v10.4.14): A tool to parse CSS and add vendor prefixes.
-3. **axios** (v1.4.0 or newer): Promise-based HTTP client for the browser and Node.js.
-4. **bcrypt** (v5.1.0 or newer): A library for hashing passwords.
-5. **eslint** (v8.39.0): A tool for identifying and reporting on patterns in JavaScript.
-6. **eslint-config-next** (v13.3.2): ESLint configuration for Next.js.
-7. **formik** (v2.2.9 or newer): Library for building forms in React.
-8. **jose** (v4.14.4 or newer): A comprehensive set of JWT, JWS, and JWE libraries.
-9. **jsonschema** (v1.4.1 or newer): An implementation of JSON Schema for Node.js.
-10. **jwt-decode** (v3.1.2 or newer): A small browser library that helps decoding JWTs.
-11. **next** (v13.3.2): A React framework for production.
-12. **pg** (v8.10.0 or newer): Non-blocking PostgreSQL client for Node.js.
-13. **postcss** (v8.4.23): A tool for transforming CSS with JavaScript.
-14. **react** (v18.2.0): A JavaScript library for building user interfaces.
-15. **react-dom** (v18.2.0): Serves as the entry point of the DOM-related rendering paths.
-16. **react-redux** (v8.0.5 or newer): Official React bindings for Redux.
-17. **tailwindcss** (v3.3.2): A utility-first CSS framework.
-18. **yup** (v1.1.1 or newer): A JavaScript schema builder for value parsing and validation.
+- "@reduxjs/toolkit": "^1.9.5" - Redux toolkit for managing state in React applications.
+- "axios": "^1.4.0" - Promise-based HTTP client for making API requests.
+- "bcrypt": "^5.1.0" - Library for hashing passwords and data securely.
+- "eslint": "8.39.0" - JavaScript linter for identifying and reporting code errors and style issues.
+- "eslint-config-next": "13.3.2" - ESLint configuration for Next.js projects.
+- "formik": "^2.2.9" - Library for building forms in React with validation and error handling.
+- "jose": "^4.14.4" - JavaScript library for JSON Object Signing and Encryption (JOSE).
+- "jsonschema": "^1.4.1" - Implementation of JSON Schema for validating JSON data.
+- "jwt-decode": "^3.1.2" - Library for decoding JSON Web Tokens (JWT).
+- "next": "13.3.2" - Framework for server-rendered React applications.
+- "pg": "^8.10.0" - PostgreSQL database client for Node.js.
+- "react": "18.2.0" - JavaScript library for building user interfaces.
+- "react-dom": "18.2.0" - Entry point for working with React in the browser.
+- "react-icons": "^4.8.0" - Collection of customizable icons for React applications.
+- "react-redux": "^8.0.5" - Official Redux bindings for React to simplify state management.
+- "yup": "^1.1.1" - JavaScript schema validation library.
+
+## DevDependencies:
+- "autoprefixer": "^10.4.14" - CSS postprocessor for adding vendor prefixes automatically.
+- "postcss": "^8.4.23" - Tool for transforming CSS with JavaScript plugins.
+- "tailwindcss": "^3.3.2" - Utility-first CSS framework for rapid UI development.
+
 
 ## Running the Project:
 
@@ -43,10 +47,3 @@ After installing the necessary requirements and dependencies, you can use the fo
 - `npm run lint`: Runs the linter to find and fix problems in your JavaScript code.
 
 Make sure to replace the npm command with yarn if you're using Yarn as your package manager.
-
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
