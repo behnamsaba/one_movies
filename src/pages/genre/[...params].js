@@ -4,7 +4,8 @@ import Content from '@/components/Content';
 import Format from '@/layout/Format';
 import Link from 'next/link';
 
-const ByGenre = ({moviesGenre,genre_id,genre}) => {
+const ByGenre = ({ moviesGenre, genre, genre_id }) => {
+    const nextPageLink = `/genre/${genre}/${genre_id}/${parseInt(moviesGenre.page) + 1}`;
 
     return (
         <Format>
@@ -14,21 +15,31 @@ const ByGenre = ({moviesGenre,genre_id,genre}) => {
                 Component={MediaList}
             />
             <button>
-                <Link href={`/genre/${genre}/${genre_id}/${parseInt(moviesGenre.page) + 1}`}>Next Page</Link>
+                <Link href={nextPageLink}>
+                    Next Page
+                </Link>
             </button>
         </Format>
     );
 };
 
-export async function getServerSideProps({ params }) {
-  const[genre,genre_id,page] = params.params
-    const moviesGenre = await movieDbApi.searchByGenre(genre_id, page);
+export async function getServerSideProps({ params: { params: [genre, genre_id, page] } }) {
+    if(!genre || !genre_id || !page) {
+      return { notFound: true };
+    }
+  
+    let moviesGenre;
+    try {
+        moviesGenre = await movieDbApi.searchByGenre(genre_id, page);
+    } catch (e) {
+        return { notFound: true };
+    }
 
     return {
         props: {
             moviesGenre,
             genre_id,
-            genre
+            genre,
         },
     };
 }

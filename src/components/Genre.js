@@ -30,9 +30,12 @@ const Genre = () => {
                     {data.genresList.map((item) => (
                         <li
                             key={item.id}
-                            className='p-1 hover:bg-gray-200 cursor-pointer text-black py-2'><Link href={`/genre/${item.name}/${item.id}/1`}>{item.name}
+                            className='p-1 hover:bg-gray-200 cursor-pointer text-black py-2'>
+                            <Link
+                                href={`/genre/${item.name}/${item.id}/1`}
+                                className='w-full inline-block on-hover'>
+                                {item.name}
                             </Link>
-
                         </li>
                     ))}
                 </ul>
