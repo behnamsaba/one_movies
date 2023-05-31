@@ -1,7 +1,7 @@
 const Content = ({ title, items, Component }) => {
     if (!items || !Array.isArray(items)) {
-      // Handle the case when items is undefined or not an array
-      return null; // or return an appropriate fallback UI
+      //handle error on vercel on deployment
+      return null;
     }
   
     return (
