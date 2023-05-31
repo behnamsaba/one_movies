@@ -1,13 +1,11 @@
 const { Pool } = require('pg');
-
+const dataBaseUrl =
+    process.env.DATABASE_URL ||
+    'postgresql://ben:secret123@localhost:5432/one_movies';
 const pool = new Pool({
-  user: 'ben',
-  host: 'localhost',
-  database: 'one_movies',
-  password: 'secret123',
-  port: 5432, // default PostgreSQL port
+    connectionString: dataBaseUrl,
 });
 
 module.exports = {
-  query: (text, params) => pool.query(text, params),
+    query: (text, params) => pool.query(text, params),
 };
