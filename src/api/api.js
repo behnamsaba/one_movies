@@ -9,7 +9,7 @@ class oneMoviesApi {
     static async request(endpoint, data = {}, method = 'get') {
         console.debug('API Call:', endpoint, data, method);
 
-        const url = `${BASE_URL}/${endpoint}`;
+        const url = `/${endpoint}`;
         const headers = { Authorization: `${oneMoviesApi.token}` };
         const params = method === 'get' ? data : {};
         try {
