@@ -35,4 +35,4 @@ yarn-error.log*
 next-env.d.ts
 
 # hide api key
-.env.local
+# .env.local
