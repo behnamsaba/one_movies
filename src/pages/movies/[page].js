@@ -31,17 +31,17 @@ export async function getStaticProps({ params }) {
     };
 }
 
-// export async function getStaticPaths() {
-//     //pre-render page 1 to 5 in the server
-//     const pageCount = 5;
-//     const paths = Array.from({ length: pageCount }, (_, i) => ({
-//         params: { page: (i + 1).toString() },
-//     }));
+export async function getStaticPaths() {
+    //pre-render page 1 to 5 in the server
+    const pageCount = 5;
+    const paths = Array.from({ length: pageCount }, (_, i) => ({
+        params: { page: (i + 1).toString() },
+    }));
 
-//     return {
-//         paths,
-//         fallback: true,
-//     };
-// }
+    return {
+        paths,
+        fallback: true,
+    };
+}
 
 export default Movies;
