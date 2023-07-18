@@ -5,17 +5,20 @@ import MediaList from '@/components/MediaList';
 import Content from '@/components/Content';
 
 const tvSeries = ({ initialSeries, page }) => {
-
-
     return (
         <Format>
-            <h1>page number {page}</h1>
-            <Content title="Latest TV-Series" items={initialSeries} Component={MediaList} />
-
-            <button>{page}</button>
-            <button>
-                <Link href={`/tv-series/${parseInt(page) + 1}`}>Next Page</Link>
-            </button>
+            <Content
+                title='Latest TV-Series'
+                items={initialSeries}
+                Component={MediaList}
+            />
+            <div className='flex justify-center space-x-4 mt-4'>
+                <button className='bg-blue-500 text-white px-4 py-2 rounded'>
+                    <Link href={`/tv-series/${parseInt(page) + 1}`}>
+                        Next Page
+                    </Link>
+                </button>
+            </div>
         </Format>
     );
 };
@@ -26,7 +29,7 @@ export async function getStaticProps({ params }) {
 
     return {
         props: {
-            initialSeries:initialSeries.results,
+            initialSeries: initialSeries.results,
             page,
         },
     };

@@ -12,9 +12,13 @@ const Movies = ({ initialMovies, page }) => {
                 items={initialMovies}
                 Component={MediaList}
             />
-            <button>
-                <Link href={`/movies/${parseInt(page) + 1}`}>Next Page</Link>
-            </button>
+            <div className='flex justify-center space-x-4 mt-4'>
+                <button className='bg-blue-500 text-white px-4 py-2 rounded'>
+                    <Link href={`/movies/${parseInt(page) + 1}`}>
+                        Next Page
+                    </Link>
+                </button>
+            </div>
         </Format>
     );
 };

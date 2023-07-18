@@ -5,7 +5,9 @@ import Format from '@/layout/Format';
 import Link from 'next/link';
 
 const ByGenre = ({ moviesGenre, genre, genre_id }) => {
-    const nextPageLink = `/genre/${genre}/${genre_id}/${parseInt(moviesGenre.page) + 1}`;
+    const nextPageLink = `/genre/${genre}/${genre_id}/${
+        parseInt(moviesGenre.page) + 1
+    }`;
 
     return (
         <Format>
@@ -14,20 +16,24 @@ const ByGenre = ({ moviesGenre, genre, genre_id }) => {
                 items={moviesGenre.results}
                 Component={MediaList}
             />
-            <button>
-                <Link href={nextPageLink}>
-                    Next Page
-                </Link>
-            </button>
+            <div className='flex justify-center space-x-4 mt-4'>
+                <button className='bg-blue-500 text-white px-4 py-2 rounded'>
+                    <Link href={nextPageLink}>Next Page</Link>
+                </button>
+            </div>
         </Format>
     );
 };
 
-export async function getServerSideProps({ params: { params: [genre, genre_id, page] } }) {
-    if(!genre || !genre_id || !page) {
-      return { notFound: true };
+export async function getServerSideProps({
+    params: {
+        params: [genre, genre_id, page],
+    },
+}) {
+    if (!genre || !genre_id || !page) {
+        return { notFound: true };
     }
-  
+
     let moviesGenre;
     try {
         moviesGenre = await movieDbApi.searchByGenre(genre_id, page);

@@ -10,7 +10,7 @@ const query = (props) => {
     return (
         <Format>
             <Content
-                title='results:'
+                title='Results'
                 items={all}
                 Component={MediaList}
             />
@@ -19,7 +19,6 @@ const query = (props) => {
 };
 
 export async function getServerSideProps({ params }) {
-    console.log("******", params)
     const searchKey = params.query;
     const searched = await movieDbApi.movieSearch(searchKey);
 

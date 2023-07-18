@@ -7,18 +7,24 @@ import Content from '@/components/Content';
 const Top = ({ initialMovies, page }) => {
     return (
         <Format>
-            <h1>page number {page}</h1>
-            <p className='page-description'>The IMDb Top 250 is a list of the top rated 250 films, based on ratings by the registered users of the website using the methods described.</p>
+            <p className='page-description'>
+                The IMDb Top 250 is a list of the top rated 250 films, based on
+                ratings by the registered users of the website using the methods
+                described.
+            </p>
             <Content
                 title='Top IMDb'
                 items={initialMovies}
                 Component={MediaList}
             />
 
-            <button>{page}</button>
-            <button>
-                <Link href={`/top-imdb/${parseInt(page) + 1}`}>Next Page</Link>
-            </button>
+            <div className='flex justify-center space-x-4 mt-4'>
+                <button className='bg-blue-500 text-white px-4 py-2 rounded'>
+                    <Link href={`/top-imdb/${parseInt(page) + 1}`}>
+                        Next Page
+                    </Link>
+                </button>
+            </div>
         </Format>
     );
 };
