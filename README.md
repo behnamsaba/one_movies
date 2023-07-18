@@ -1,6 +1,6 @@
 # One_Movies Project
 
-Click [here](https://one-movies.vercel.app/) to explore the live project.
+Click [here](https://onemovies-omega.vercel.app/) to explore the live project.
 
 ## Overview
 
