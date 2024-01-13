@@ -35,6 +35,7 @@ const Login = () => {
 
     return (
         <Format>
+            <div className='h-screen w-full'>
             <form onSubmit={formik.handleSubmit} className='formik-form'>
                 <InputField
                     id='username'
@@ -59,6 +60,7 @@ const Login = () => {
             <p className='text-center mt-6'>
                 Dont have account? <Link href='/signup' className='text-red-800 hover:underline'>Register</Link>
             </p>
+            </div>
         </Format>
     );
 };

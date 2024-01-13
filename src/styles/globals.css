@@ -23,12 +23,12 @@ body{
 /* global css for forms login - signup - profile*/
 
 .formik-form{
-  @apply max-w-lg mx-auto mt-10;
+  @apply max-w-md mx-auto my-10 p-8 border-2 border-gray-300 rounded-lg shadow-lg m-2;
 
 }
 
 .formik-label{
-  @apply block text-gray-700 text-sm font-bold mb-2 py-4;
+  @apply block text-gray-700 text-sm font-bold mb-0 py-3;
 
 }
 

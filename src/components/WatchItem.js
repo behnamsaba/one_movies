@@ -37,10 +37,10 @@ const WatchItem = ({
                     </Link>
                 </li>
                 <li className='p-2'>
-                    TYPE-{category}
+                    TYPE | {category}
                 </li>
                 <li className='p-2'>
-                    Name-{title}
+                    Name | {title}
                 </li>
                 <li className='p-2'>
                     <AiOutlineStar className='inline-block mr-1' />

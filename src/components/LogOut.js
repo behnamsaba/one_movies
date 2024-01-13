@@ -16,9 +16,9 @@ const LogOut = () => {
             <Link
                 href='/'
                 onClick={handleLogout}
-                style={{ display: 'flex', alignItems: 'center'}}>
+                className='flex justify-center'>
+                <AiOutlineLogout className='ml-1 text-white font-semibold' />
                 Logout
-                <AiOutlineLogout style={{ marginLeft: '5px'}} color='red'/>
             </Link>
         </div>
     );

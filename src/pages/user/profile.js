@@ -18,7 +18,7 @@ const Profile = () => {
                 <>
                     <button
                         onClick={changeHandler}
-                        className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-auto block'>
+                        className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-auto block m-12'>
                         WatchList
                     </button>
                     <UserProfile {...profileData} />
@@ -27,21 +27,23 @@ const Profile = () => {
                 <>
                     <button
                         onClick={changeHandler}
-                        className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-auto block'>
+                        className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-auto block m-12'>
                         Account
                     </button>
-                    {profileData.watchlist.length === 0 ? (
+                    {profileData && profileData.watchlist.length === 0 ? (
                         <p className='text-white font-bold py-2 px-4 rounded mx-auto block'>
                             There is currently no watchlist now
                         </p>
                     ) : (
                         <div className='cards'>
-                            {profileData.watchlist.map((item) => (
-                                <WatchItem
-                                    key={item.id}
-                                    {...item}
-                                />
-                            ))}
+                            {profileData
+                                ? profileData.watchlist.map((item) => (
+                                      <WatchItem
+                                          key={item.id}
+                                          {...item}
+                                      />
+                                  ))
+                                : null}
                         </div>
                     )}
                 </>

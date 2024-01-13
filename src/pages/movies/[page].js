@@ -12,8 +12,8 @@ const Movies = ({ initialMovies, page }) => {
                 items={initialMovies}
                 Component={MediaList}
             />
-            <div className='flex justify-center space-x-4 mt-4'>
-                <button className='bg-blue-500 text-white px-4 py-2 rounded'>
+            <div className='flex justify-center space-x-4 my-4'>
+                <button className='bg-blue-500 text-white px-4 py-2 rounded m-12'>
                     <Link href={`/movies/${parseInt(page) + 1}`}>
                         Next Page
                     </Link>
