@@ -19,7 +19,7 @@ const Top = ({ initialMovies, page }) => {
             />
 
             <div className='flex justify-center space-x-4 mt-4'>
-                <button className='bg-blue-500 text-white px-4 py-2 rounded'>
+                <button className='nextpage-btn'>
                     <Link href={`/top-imdb/${parseInt(page) + 1}`}>
                         Next Page
                     </Link>
