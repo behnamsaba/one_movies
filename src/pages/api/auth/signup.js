@@ -4,6 +4,16 @@ import userRegisterSchema from '../../../utils/backend-validation/schemas/userRe
 import { createToken } from '../../../utils/helpers/tokens';
 import { BadRequestError } from '../../../utils/NextErrors';
 export default async function handler(req, res) {
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    
+    // Handle preflight OPTIONS request
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    
     if (req.method !== 'POST') {
         return res.status(405).json({ err: 'Method not allowed' });
     }
