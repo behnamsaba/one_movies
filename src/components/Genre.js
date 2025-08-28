@@ -9,6 +9,8 @@ const Genre = () => {
 
     const [open, setOpen] = useState(false);
     const closeTimer = useRef(null);
+    // Hooks must be called unconditionally and before any early returns
+    const { asPath } = useRouter();
 
     const safeOpen = () => {
         if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -24,7 +26,6 @@ const Genre = () => {
         return <LoadingSpinner />;
     }
     const genres = data?.genresList || [];
-    const { asPath } = useRouter();
     const isActive = (asPath || '').startsWith('/genre');
     return (
         <div className='relative' onMouseEnter={safeOpen} onMouseLeave={safeClose}>

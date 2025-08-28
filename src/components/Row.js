@@ -5,7 +5,6 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 // Horizontal scroll row using the existing MediaList item card
 const Row = ({ title, items = [], viewAllHref }) => {
-  if (!items || items.length === 0) return null;
   const scrollRef = useRef(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -37,6 +36,8 @@ const Row = ({ title, items = [], viewAllHref }) => {
       window.removeEventListener('resize', onResize);
     };
   }, [updateScrollPosition, items]);
+
+  if (!items || items.length === 0) return null;
   return (
     <section className="mb-6">
       <div className="flex items-baseline justify-between px-4">

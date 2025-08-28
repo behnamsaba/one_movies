@@ -10,16 +10,16 @@ import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import externalApi from '@/api/externalApi';
 
-const tvSeries = ({ initialSeries, page, totalPages }) => {
+const TvSeries = ({ initialSeries, page, totalPages }) => {
     const router = useRouter();
     const [sort, setSort] = useState('popularity.desc');
     const [filters, setFilters] = useState({ genres: [], minRating: 0 });
     const [filteredItems, setFilteredItems] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const baseItems = filteredItems ?? initialSeries ?? [];
     const items = useMemo(() => {
-        const arr = [...baseItems];
+        const base = filteredItems ?? initialSeries ?? [];
+        const arr = [...base];
         switch (sort) {
             case 'vote_average.desc':
                 return arr.sort((a, b) => (b.vote_average || 0) - (a.vote_average || 0));
@@ -30,7 +30,7 @@ const tvSeries = ({ initialSeries, page, totalPages }) => {
             default:
                 return arr.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
         }
-    }, [baseItems, sort]);
+    }, [filteredItems, initialSeries, sort]);
 
     const hasActiveFilters = (filters.genres?.length || 0) > 0 || (filters.minRating || 0) > 0;
 
@@ -53,7 +53,7 @@ const tvSeries = ({ initialSeries, page, totalPages }) => {
             }
         })();
         return () => { mounted = false; };
-    }, [filters]);
+    }, [filters, hasActiveFilters]);
 
     if (router.isFallback) {
         return (
@@ -107,4 +107,4 @@ export async function getStaticPaths() {
     return { paths, fallback: 'blocking' };
 }
 
-export default tvSeries;
+export default TvSeries;
