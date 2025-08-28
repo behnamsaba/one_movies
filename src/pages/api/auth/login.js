@@ -4,6 +4,10 @@ import userAuth from '@/utils/backend-validation/schemas/userAuth.json';
 import { BadRequestError } from '@/utils/NextErrors';
 import { createToken } from '@/utils/helpers/tokens';
 export default async function handler(req, res) {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ err: 'Method not allowed' });
+    }
+    
     try {
         const validator = validate(req.body, userAuth);
         if (!validator.valid) {

@@ -4,6 +4,10 @@ import userRegisterSchema from '../../../utils/backend-validation/schemas/userRe
 import { createToken } from '../../../utils/helpers/tokens';
 import { BadRequestError } from '../../../utils/NextErrors';
 export default async function handler(req, res) {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ err: 'Method not allowed' });
+    }
+    
     try {
         const validator = validate(req.body, userRegisterSchema);
         if (!validator.valid) {
