@@ -27,13 +27,12 @@ const MediaList = ({
     const imageComponent = poster_path && (
         <Link href={`/${linkPath}/${id}`}>
             <Image
-                src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                src={`https://image.tmdb.org/t/p/w342${poster_path}`}
                 alt={altText}
                 width={200}
-                height={200}
+                height={300}
+                sizes="(max-width: 640px) 45vw, 200px"
                 quality={75}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,..."
             />
         </Link>
     );

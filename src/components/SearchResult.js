@@ -26,10 +26,12 @@ const SearchResults = ({
             {media_type === 'tv' ? (
                 <Link href={`/show/${id}`}>
                     <Image
-                        src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                        src={`https://image.tmdb.org/t/p/w342${poster_path}`}
                         alt={name}
                         width={200}
-                        height={200}
+                        height={300}
+                        sizes="(max-width: 640px) 45vw, 200px"
+                        quality={70}
                         onMouseLeave={handleMouseOut}
                         onMouseOver={handleMouseOver}
                     />
@@ -37,10 +39,12 @@ const SearchResults = ({
             ) : (
                 <Link href={`/movie/${id}`}>
                     <Image
-                        src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                        src={`https://image.tmdb.org/t/p/w342${poster_path}`}
                         alt={title || name}
                         width={200}
-                        height={200}
+                        height={300}
+                        sizes="(max-width: 640px) 45vw, 200px"
+                        quality={70}
                         onMouseLeave={handleMouseOut}
                         onMouseOver={handleMouseOver}
                     />

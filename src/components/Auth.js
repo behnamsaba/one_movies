@@ -5,15 +5,16 @@ import { useEffect } from 'react';
 
 const Auth = (Component) => {
   return function AuthComponent(props) {
-    const username = useSelector((data) => data.internalDataSlice.user);
+    const { user: username, hydrated } = useSelector((data) => data.internalDataSlice);
     const router = useRouter();
 
     useEffect(() => {
-      if (!username) {
+      if (hydrated && !username) {
         router.push('/login');
       }
-    }, [username, router]);
+    }, [hydrated, username, router]);
 
+    if (!hydrated) return null;
     return <Component {...props} />;
   };
 }

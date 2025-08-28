@@ -38,6 +38,7 @@ export async function getStaticProps({ params }) {
             initialMovies: initialMovies.results,
             page,
         },
+        revalidate: 86400, // Top rated updates slowly; revalidate daily
     };
 }
 

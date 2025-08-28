@@ -8,7 +8,7 @@ export const loginUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const token = await oneMoviesApi.login(data);
-            oneMoviesApi.token = token;
+            oneMoviesApi.setToken(token);
             localStorage.setItem('one_movies', token);
             return token;
         } catch (err) {
@@ -22,7 +22,7 @@ export const registerUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const token = await oneMoviesApi.signUp(data);
-            oneMoviesApi.token = token;
+            oneMoviesApi.setToken(token);
             return token;
         } catch (err) {
             return rejectWithValue(err[0]);

@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import {
     nameValidation,
     emailValidation,
@@ -9,6 +10,7 @@ import { userChange } from '@/store/actionCreators';
 
 const UserProfile = ({ username, firstName, lastName, email }) => {
     const dispatch = useDispatch();
+    const [saved, setSaved] = useState(false);
     const formik = useFormik({
         initialValues: {
             firstName,
@@ -18,9 +20,10 @@ const UserProfile = ({ username, firstName, lastName, email }) => {
         onSubmit: async (data) => {
             try {
                 await dispatch(userChange({ username, data })).unwrap();
-                alert('Successfully Changed');
+                setSaved(true);
             } catch (e) {
                 formik.setErrors({ backendError: e });
+                setSaved(false);
             }
         },
         validationSchema: Yup.object({
@@ -34,7 +37,8 @@ const UserProfile = ({ username, firstName, lastName, email }) => {
         <div className='w-full justify-center'>
             <form
                 onSubmit={formik.handleSubmit}
-                className='formik-form'>
+                className='formik-form max-w-lg w-full'>
+                <h2 className='text-xl font-semibold text-white mb-4'>Account Details</h2>
                 <InputField
                     id='firstName'
                     label='First Name'
@@ -60,6 +64,11 @@ const UserProfile = ({ username, firstName, lastName, email }) => {
                     Save Changes
                 </button>
 
+                {saved && !formik.errors.backendError && (
+                    <div className='mt-3 rounded-md bg-green-600/20 border border-green-600 text-green-200 px-3 py-2 text-sm'>
+                        Profile updated successfully.
+                    </div>
+                )}
                 {formik.errors.backendError && (
                     <div className='formik-error'>
                         {formik.errors.backendError}
@@ -81,7 +90,7 @@ const InputField = ({ id, label, type = 'text', formik, ...props }) => (
             id={id}
             type={type}
             {...props}
-            className='input-text'
+            className='input-text w-full'
         />
         {formik.touched[id] && formik.errors[id] ? (
             <p className='formik-error'>{formik.errors[id]}</p>

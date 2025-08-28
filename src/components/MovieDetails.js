@@ -12,16 +12,20 @@ const MovieDetails = ({
     revenue,
     poster_path,
     production_countries,
+    trailerKey,
+    onWatchTrailer,
 }) => {
     const router = useRouter();
     return (
         <div className="flex flex-col md:flex-row bg-gray-900 text-white rounded-lg shadow-xl overflow-hidden m-4">
             <div className="flex-shrink-0">
                 <Image
-                    src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w780${poster_path}`}
                     alt={original_title}
                     width={400}
                     height={600}
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    priority
                     className="h-full w-full object-cover"
                 />
             </div>
@@ -32,6 +36,14 @@ const MovieDetails = ({
                 >
                     Back
                 </button>
+                {trailerKey && (
+                    <button
+                        onClick={onWatchTrailer}
+                        className="ml-3 mb-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                        Watch Trailer
+                    </button>
+                )}
                 <h1 className="text-4xl mb-2 leading-tight font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">{original_title}</h1>
                 <p className="text-xl font-medium mb-4 text-gray-300">{overview}</p>
                 <p className="font-bold mb-2 text-gray-400">Budget: {numberWithCommas(budget)} $</p>

@@ -8,6 +8,8 @@ import {
 } from './actionCreators';
 const initialState = {
     token: null,
+    user: null,
+    hydrated: false,
 };
 
 const userSlice = createSlice({
@@ -17,8 +19,13 @@ const userSlice = createSlice({
         setToken: (state, action) => {
             state.token = action.payload;
         },
+        setHydrated: (state, action) => {
+            state.hydrated = action.payload === undefined ? true : !!action.payload;
+        },
         clearToken: (state) => {
             state.token = null;
+            state.user = null;
+            state.hydrated = true;
             localStorage.removeItem('one_movies'); // Remove token from localStorage
         },
 
@@ -90,5 +97,5 @@ const userSlice = createSlice({
     },
 });
 
-export const { setToken, clearToken, setUser } = userSlice.actions;
+export const { setToken, clearToken, setUser, setHydrated } = userSlice.actions;
 export default userSlice.reducer;

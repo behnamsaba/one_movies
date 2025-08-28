@@ -1,22 +1,33 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
+// Centralized axios client with token injection
+const axiosInstance = axios.create({ baseURL: '/' });
 
 class oneMoviesApi {
-    // the token for interactive with the API will be stored here.
-    static token;
+    // in-memory token used for requests
+    static token = null;
+
+    static setToken(token) {
+        oneMoviesApi.token = token || null;
+    }
 
     static async request(endpoint, data = {}, method = 'get') {
         console.debug('API Call:', endpoint, data, method);
-
         const url = `/${endpoint}`;
-        const headers = { Authorization: `${oneMoviesApi.token}` };
         const params = method === 'get' ? data : {};
         try {
-            return (await axios({ url, method, data, params, headers })).data;
+            const res = await axiosInstance.request({
+                url,
+                method,
+                data,
+                params,
+                headers: oneMoviesApi.token
+                    ? { Authorization: `${oneMoviesApi.token}` }
+                    : undefined,
+            });
+            return res.data;
         } catch (err) {
-            // console.error('API Error:', err.response);
-            let message = err.response.data.err;
+            let message = err?.response?.data?.err || err.message;
             throw Array.isArray(message) ? message : [message];
         }
     }
@@ -64,3 +75,4 @@ class oneMoviesApi {
 }
 
 export default oneMoviesApi;
+export { axiosInstance };

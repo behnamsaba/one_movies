@@ -18,16 +18,20 @@ const ShowDetails = ({
     genres,
     homepage,
     production_countries,
+    trailerKey,
+    onWatchTrailer,
 }) => {
     const router = useRouter();
     return (
         <div className='flex flex-col md:flex-row bg-gray-900 text-white rounded-lg shadow-xl overflow-hidden m-4'>
             <div className='flex-shrink-0'>
                 <Image
-                    src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w780${poster_path}`}
                     alt={name}
                     width={400}
                     height={600}
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    priority
                     className='h-full w-full object-cover'
                 />
             </div>
@@ -37,6 +41,14 @@ const ShowDetails = ({
                     className='mb-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
                     Back
                 </button>
+                {trailerKey && (
+                    <button
+                        onClick={onWatchTrailer}
+                        className='ml-3 mb-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
+                    >
+                        Watch Trailer
+                    </button>
+                )}
                 <h1 className='text-4xl mb-2 leading-tight font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl'>
                     {name}
                 </h1>
@@ -68,11 +80,12 @@ const ShowDetails = ({
                             href={homepage ? homepage :`https://www.google.com/search?q=${name}`}
                             className='mb-2'>
                             <Image
-                                src={`https://image.tmdb.org/t/p/original${network.logo_path}`}
+                                src={`https://image.tmdb.org/t/p/w185${network.logo_path}`}
                                 alt={network.name}
-                                width={50}
-                                height={50}
-                                className='rounded-full'
+                                width={100}
+                                height={60}
+                                sizes="(max-width: 640px) 25vw, 100px"
+                                className='object-contain bg-white rounded-md'
                             />
                         </Link>
                     ))}

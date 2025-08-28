@@ -29,10 +29,12 @@ const WatchItem = ({
                     <Link href={`/${category}/${id}`}>
                         <Image
                             className='object-cover'
-                            src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                            src={`https://image.tmdb.org/t/p/w342${poster_path}`}
                             alt={title}
                             width={200}
-                            height={200}
+                            height={300}
+                            sizes="(max-width: 640px) 80vw, 200px"
+                            quality={75}
                         />
                     </Link>
                 </li>
